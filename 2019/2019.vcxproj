@@ -165,6 +165,7 @@
     <ClCompile Include="day_24\day_24.cpp" />
     <ClCompile Include="day_25\day_25.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="intcode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="day_01\day_01.h" />
@@ -192,6 +193,15 @@
     <ClInclude Include="day_23\day_23.h" />
     <ClInclude Include="day_24\day_24.h" />
     <ClInclude Include="day_25\day_25.h" />
+    <ClInclude Include="intcode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AoCLibrary\AoCLibrary.vcxproj">
+      <Project>{ad485531-7ae4-4e82-8817-52c19841b578}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="day_02\input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

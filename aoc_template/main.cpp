@@ -27,8 +27,7 @@
 
 
 
-int main()
-{
+int main() {
     day_01::print_answers();
     day_02::print_answers();
     day_03::print_answers();
