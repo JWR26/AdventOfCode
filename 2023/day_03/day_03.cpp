@@ -47,23 +47,22 @@ std::vector<std::vector<int>> day_03::number_schema(const std::vector<std::vecto
 	std::vector<std::vector<int>> numbers(grid.size(), std::vector<int>(grid.front().size(), 0));
 
 	// variable declarations outside of the loop
-	int n{};
-	int index{}; // column counter
-	int r{}; // counter for the row
+	int n{}, index{}, r{};
+	std::vector<char>::const_iterator rhs, lhs;
+
+	// catching up occurs in three different scenarios - Lambda to the rescue
+	auto catch_up = [&]() -> void {
+		while (lhs != rhs) {
+			numbers[r][index] = *lhs != '*' ? n : -1;
+			++lhs;
+			++index;
+		}
+		};
 
 	for (const std::vector<char>& row : grid) {
 		// lhs and rhs pointers for the sliding window - lhs will 'chase' the rhs
-		auto lhs(row.begin());
-		auto rhs(row.begin());
-
-		// catching up occurs in three different scenarios
-		auto catch_up = [&]() -> void {
-			while (lhs != rhs) {
-				numbers[r][index] = *lhs != '*' ? n : -1;
-				++lhs;
-				++index;
-			}
-			};
+		lhs = row.begin();
+		rhs  = row.begin();
 
 		while (rhs != row.end()) {
 			if (isdigit(*rhs)) {
