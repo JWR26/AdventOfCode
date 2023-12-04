@@ -240,7 +240,7 @@ long long third_optimise(const std::string& file_path) {
 	return t;
 }
 
-long long fourth_optimise(const std::string& file_path) {
+long long fourth_optimise(const std::string& file_path)  {
 	auto begin = std::chrono::high_resolution_clock::now();
 
 	std::ifstream data{ file_path };
@@ -341,10 +341,10 @@ void day_04::print_answers() {
 	float t = float(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()) / 1000;
 
 	std::cout << "Time: " << t << " ms\n";
-	/*
-	std::vector<float> averages(4, 0.0);
+	
+	std::vector<float> averages(5, 0.0);
 
-	const int ITERATIONS{ 300 };
+	const int ITERATIONS{ 1 };
 
 	for (int i{ 0 }; i < ITERATIONS; ++i) {
 		averages[0] += float(first_optimise(day_04::INPUT_FILE)) / 1000;
@@ -361,5 +361,4 @@ void day_04::print_answers() {
 	std::cout << "\nOptimise by using vectors instead of sets:\n    Average Time:  " << averages[1] << "ms\n    x" << 1.0 / (averages[1] / t) << " faster\n";
 	std::cout << "\nOptimise by using a vector<bool> to mark winning numbers:\n    Average Time:  " << averages[2] << "ms\n    x" << 1.0 / (averages[2] / t) << " faster\n";
 	std::cout << "\nOptimise by using std::bitset instead of vector<bool>:\n    Average Time: " << averages[3] << "ms\n    x" << 1.0 / (averages[3] / t) << " faster\n\n";
-	*/
 }

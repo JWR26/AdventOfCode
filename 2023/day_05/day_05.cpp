@@ -1,20 +1,29 @@
 #include "day_05.h"
 
 void day_05::print_answers() {
-	std::cout << "Not implemented - Insert day name here" << std::endl; 
+	std::cout << day_05::DAY_NAME << std::endl;
 
-	std::cout << "Part 1: " << part_one<int>("input.txt") << '\n';
-	std::cout << "Part 2: " << part_two<int>("input.txt") << '\n';
+	auto begin = std::chrono::high_resolution_clock::now();
+
+	int part_1{ part_one(day_05::TEST_FILE) };
+	int part_2{ part_two(day_05::TEST_FILE) };
+
+	auto end = std::chrono::high_resolution_clock::now();
+
+	std::cout << "Part 1: " << part_1 << '\n';
+	std::cout << "Part 2: " << part_2 << '\n';
+
+	float t = float(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()) / 1000;
+
+	std::cout << "Time: " << t << " ms\n";
 }
 
-template<typename T>
-T part_one(const std::string& input_file) {
-	T answer{};
+int day_05::part_one(const std::string& input_file) {
+	int answer{};
 	return answer;
 }
 
-template<typename T>
-T part_two(const std::string& input_file) {
-	T answer{};
+int day_05::part_two(const std::string& input_file) {
+	int answer{};
 	return answer;
 }
