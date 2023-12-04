@@ -53,38 +53,28 @@ void day_04::print_answers() {
 
 	std::vector<std::pair<std::set<int>, std::set<int>>> scratchcards(parse_cards(day_04::INPUT_FILE));
 
-	std::map<int, std::vector<int>> card_extras;
+	std::map<int, int> card_totals;
 	std::vector<int> matches;
 	std::queue<int> copies;
 
 	int pile_worth{}, index{}, copy_index{}, total_cards{};
 
 	for (const auto& [wn, cn] : scratchcards) {
-		card_extras[index] = std::vector<int>();
+		card_totals[index] += 1;
 		std::set_intersection(wn.begin(), wn.end(), cn.begin(), cn.end(), std::back_inserter(matches));
-		copy_index = index + matches.size() + 1;
-		for (int i{ index + 1 }; i < copy_index; ++i) {
-			copies.push(i);
-			card_extras[index].push_back(i);
-		}
 		if (matches.size() > 0) {
 			pile_worth += pow(2, matches.size() - 1);
+			copy_index = index + matches.size() + 1;
+			for (int i{ index + 1 }; i < copy_index; ++i) {
+				card_totals[i] += card_totals[index];
+			}
 		}
 		matches.clear();
+		total_cards += card_totals[index];
 		++index;
-		++total_cards;
 	}
 
 	std::cout << "Part 1: " << pile_worth << '\n';
-
-	while (!copies.empty()) {
-		index = copies.front();
-		copies.pop();
-		++total_cards;
-		for (const int& i : card_extras[index]) {
-			copies.push(i);
-		}
-	}
 
 	std::cout << "Part 2: " << total_cards << '\n';
 }
