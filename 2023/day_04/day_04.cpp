@@ -55,7 +55,6 @@ void day_04::print_answers() {
 
 	std::map<int, int> card_totals;
 	std::vector<int> matches;
-	std::queue<int> copies;
 
 	int pile_worth{}, index{}, copy_index{}, total_cards{};
 
@@ -77,9 +76,4 @@ void day_04::print_answers() {
 	std::cout << "Part 1: " << pile_worth << '\n';
 
 	std::cout << "Part 2: " << total_cards << '\n';
-}
-
-int day_04::part_two(const std::string& input_file) {
-	int answer{};
-	return answer;
 }

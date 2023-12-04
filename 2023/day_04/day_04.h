@@ -4,8 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include <numeric>
-#include <queue>
 #include <set>
 #include <string>
 #include <vector>
@@ -16,5 +14,4 @@ namespace day_04 {
 	const std::string DAY_NAME{ "--- Day 4: Scratchcards ---" };
 
 	void print_answers();
-	int part_two(const std::string& input_file);
 }
