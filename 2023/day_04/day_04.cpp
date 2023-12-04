@@ -11,6 +11,17 @@ std::vector<std::pair<std::set<int>, std::set<int>>> parse_cards(const std::stri
 	std::set<int> winning_numbers;
 	std::set<int> card_numbers;
 
+	auto evaluate_char = [&](std::set<int>& container, const char& c) -> void {
+		if (isdigit(c)) {
+			n = n * 10 + (c - '0');
+		}
+		else if (n > 0) {
+			container.insert(n);
+			n = 0;
+		}
+		++it;
+		};
+
 	while (data) {
 		std::getline(data, line, '\n');
 		if (!line.empty()) {
@@ -19,28 +30,10 @@ std::vector<std::pair<std::set<int>, std::set<int>>> parse_cards(const std::stri
 				++it;
 			}
 			while (*it != '|') {
-				if (isdigit(*it)) {
-					n = n * 10 + (*it - '0');
-					++it;
-					continue;
-				}
-				if (n > 0) {
-					winning_numbers.insert(n);
-					n = 0;
-				}
-				++it;
+				evaluate_char(winning_numbers, *it);
 			}
 			while (it != line.end()) {
-				if (isdigit(*it)) {
-					n = n * 10 + (*it - '0');
-					++it;
-					continue;
-				}
-				if (n > 0) {
-					card_numbers.insert(n);
-					n = 0;
-				}
-				++it;
+				evaluate_char(card_numbers, *it);
 			}
 			if (n > 0) {
 				card_numbers.insert(n);
