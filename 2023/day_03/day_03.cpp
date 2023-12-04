@@ -4,6 +4,8 @@
 void day_03::print_answers() {
 	std::cout << day_03::DAY_NAME << '\n';
 
+	auto begin = std::chrono::high_resolution_clock::now();
+
 	auto [grid, positions] = parser::to_grid_with_positions(day_03::INPUT_FILE, [](char c) -> bool {return !isdigit(c) && c != '.'; });
 
 	std::vector<std::vector<int>> schema_numbers = number_schema(grid);
@@ -38,8 +40,12 @@ void day_03::print_answers() {
 
 		numbers.clear();
 	}
+
+	auto end = std::chrono::high_resolution_clock::now();
+
 	std::cout << "Part 1: " << part_1 << '\n';
 	std::cout << "Part 2: " << part_2 << '\n';
+	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
 }
 
 std::vector<std::vector<int>> day_03::number_schema(const std::vector<std::vector<char>>& grid) {

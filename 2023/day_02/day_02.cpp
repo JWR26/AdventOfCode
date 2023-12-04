@@ -3,6 +3,8 @@
 void day_02::print_answers() {
 	std::cout << "--- Day 2: Cube Conundrum ---" << std::endl; 
 
+	auto begin = std::chrono::high_resolution_clock::now();
+
 	std::vector<std::string> input = parser::get_lines(INPUT_FILE);
 
 	std::vector<Game> game_list;
@@ -11,8 +13,12 @@ void day_02::print_answers() {
 		game_list.push_back(to_game(s));
 	}
 
+	auto end = std::chrono::high_resolution_clock::now();
+
 	std::cout << "Part 1: " << part_one(game_list) << '\n';
 	std::cout << "Part 2: " << part_two(game_list) << '\n';
+
+	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
 }
 
 int day_02::part_one(const std::vector<Game>& game_list) {
