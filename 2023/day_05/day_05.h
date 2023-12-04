@@ -6,8 +6,8 @@
 
 
 namespace day_05 {
-	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_04\\input.txt" };
-	const std::string TEST_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_04\\test.txt" };
+	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_05\\input.txt" };
+	const std::string TEST_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_05\\test.txt" };
 	const std::string DAY_NAME{ "--- Day 4: Scratchcards ---" };
 
 	void print_answers();
