@@ -32,6 +32,17 @@ int day_02::part_one(const std::vector<Game>& game_list) {
 		};
 
 	return std::accumulate(game_list.begin(), game_list.end(), 0, total_score);
+	
+	/*
+	// classic for loop in place of algorithm:
+	int score{};
+	for (const auto& g : game_list) {
+		if (g.is_possible()) {
+			score += g.id;
+		}
+	}
+
+	return score;*/
 }
 
 int day_02::part_two(const std::vector<Game>& game_list) {

@@ -241,9 +241,11 @@ long long third_optimise(const std::string& file_path) {
 }
 
 long long fourth_optimise(const std::string& file_path)  {
+	
+	std::ifstream data{ file_path };
+
 	auto begin = std::chrono::high_resolution_clock::now();
 
-	std::ifstream data{ file_path };
 	std::string line{};
 
 	int pile_worth{}, index{}, total_cards{};
