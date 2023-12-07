@@ -90,7 +90,7 @@ long long first_optimise(const std::string& file_path) {
 			std::vector<int> matches;
 			std::set_intersection(winning_numbers.begin(), winning_numbers.end(), card_numbers.begin(), card_numbers.end(), std::back_inserter(matches));
 			if (matches.size() > 0) {
-				pile_worth += pow(2, matches.size() - 1);
+				pile_worth += static_cast<int>(pow(2, matches.size() - 1));
 				for (int i{ index + 1 }; i < index + matches.size() + 1; ++i) {
 					card_totals[i] += card_totals[index];
 				}

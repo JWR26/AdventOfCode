@@ -69,8 +69,10 @@ void day_05::print_answers() {
 			reverse_map_ranges.push_back(std::make_pair(rev_sub_range, -offset));
 		}
 		else {
+			std::sort(map_ranges.begin(), map_ranges.end());
 			range_offsets.push_back(map_ranges);
 			map_ranges.clear();
+			std::sort(reverse_map_ranges.begin(), reverse_map_ranges.end());
 			reverse_range_offsets.push_back(reverse_map_ranges);
 			reverse_map_ranges.clear();
 		}
@@ -96,6 +98,8 @@ void day_05::print_answers() {
 
 	long long part_1{ *std::min_element(locations.begin(), locations.end()) };
 
+	std::sort(seed_ranges.begin(), seed_ranges.end());
+
 	long long part_2{ };
 
 	auto find_location_seed = [&reverse_range_offsets](const long long& i) -> long long {
@@ -106,10 +110,10 @@ void day_05::print_answers() {
 					continue;
 				}
 				n += offset;
+				if (n < 0) {
+					return -1;
+				}
 				break;
-			}
-			if (n < 0) {
-				return -1;
 			}
 		}
 		return n;
@@ -125,9 +129,11 @@ void day_05::print_answers() {
 		return false;
 		};
 
+	/*
 	while (!in_seed_range(find_location_seed(part_2))) {
 		++part_2;
 	}
+	*/
 
 	auto end = std::chrono::high_resolution_clock::now();
 
@@ -137,5 +143,8 @@ void day_05::print_answers() {
 	float t = float(std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()) / 1000;
 
 	std::cout << "Time: " << t << " ms\n";
+
+
+
 }
 

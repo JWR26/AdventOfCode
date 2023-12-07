@@ -116,10 +116,6 @@ namespace day_07 {
 			if (hand.find('J') == std::string::npos) {
 				return;
 			}
-			// guard against "JJJJJ" case
-			if (hand == "JJJJJ") {
-				return;
-			}
 
 			std::string temp{ hand };
 			std::sort(temp.begin(), temp.end());
@@ -134,6 +130,10 @@ namespace day_07 {
 				std::replace(s.begin(), s.end(), 'J', c);
 				s += " 0"; // add the 0 for the bid
 				possible_hands.emplace_back(s);
+			}
+			// guard against "JJJJJ" case
+			if (possible_hands.empty()) {
+				return;
 			}
 
 			std::sort(possible_hands.begin(), possible_hands.end());

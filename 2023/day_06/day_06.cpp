@@ -1,20 +1,36 @@
 #include "day_06.h"
 
+template<typename T>
+T ways_to_win(std::pair<T, T> race) {
+	const auto& [time, distance] = race;
+	for (T i{ 1 }; i < time; ++i) {
+		T d{ i * (time - i) };
+
+		if (d >= distance) {
+			return (time - (2 * i) + 1);
+		}
+	}
+
+	return 0;
+}
+
 void day_06::print_answers() {
-	std::cout << "Not implemented - Insert day name here" << std::endl; 
+	std::cout << "--- Day 6: Wait For It ---" << std::endl; 
 
-	std::cout << "Part 1: " << part_one<int>("input.txt") << '\n';
-	std::cout << "Part 2: " << part_two<int>("input.txt") << '\n';
+	std::cout << "Part 1: " << part_one() << '\n';
+	std::cout << "Part 2: " << part_two() << '\n';
 }
 
-template<typename T>
-T part_one(const std::string& input_file) {
-	T answer{};
-	return answer;
+int day_06::part_one() {
+	int product{ 1 };
+
+	for (const auto& race : INPUT) {
+		product *= ways_to_win(race);
+	}
+
+	return product;
 }
 
-template<typename T>
-T part_two(const std::string& input_file) {
-	T answer{};
-	return answer;
+long long day_06::part_two() {
+	return ways_to_win(INPUT_2);
 }
