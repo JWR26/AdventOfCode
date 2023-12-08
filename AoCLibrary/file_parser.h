@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace parser {
+namespace file_parser {
 	
 	std::vector<std::string> get_lines(const std::string& file_path);
 	std::vector<std::vector<char>> file_to_grid(const std::string& file_path);

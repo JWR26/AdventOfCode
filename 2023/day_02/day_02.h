@@ -7,28 +7,27 @@
 #include <string>
 #include <vector>
 
-#include <parser.h>
-
-struct Game {
-	int id{}, max_red{}, max_blue{}, max_green{};
-
-	bool is_possible() const {
-		return max_red < 13 && max_green < 14 && max_blue < 15;
-	}
-
-	int cube_power() const {
-		return max_red * max_green * max_blue;
-	}
-};
-
-const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_02\\input.txt" };
-const std::string TEST_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_02\\test.txt" };
+#include "file_parser.h"
 
 
 namespace day_02 {
-	void print_answers();
-	int part_one(const std::vector<Game>& input);
-	int part_two(const std::vector<Game>& input);
+	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_02\\input.txt" };
+	const std::string TEST_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_02\\test.txt" };
+
+	struct Game {
+		int id{}, max_red{}, max_green{}, max_blue{};
+	};
+
 	Game to_game(const std::string& text);
+
+	std::vector<Game> to_game_list(const std::vector<std::string>& list);
+
+	bool is_possible(const Game& g);
+	int cube_power(const Game& g);
+
+	void print_answers();
+	int sum_possible_game_ids(const std::vector<Game>& input);
+	int sum_cube_powers(const std::vector<Game>& input);
+	
 }
  

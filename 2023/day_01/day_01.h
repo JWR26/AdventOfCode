@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "parser.h"
+#include "file_parser.h"
 
 const std::string input_file{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_01\\input.txt" };
 const std::string test_file{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_01\\test.txt" };

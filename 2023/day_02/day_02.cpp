@@ -1,77 +1,97 @@
 #include "day_02.h"
 
-void day_02::print_answers() {
-	std::cout << "--- Day 2: Cube Conundrum ---" << std::endl; 
+namespace day_02 {
 
-	auto begin = std::chrono::high_resolution_clock::now();
+	void print_answers() {
+		std::cout << "--- Day 2: Cube Conundrum ---" << std::endl;
 
-	std::vector<std::string> input = parser::get_lines(INPUT_FILE);
+		auto begin = std::chrono::high_resolution_clock::now();
 
-	std::vector<Game> game_list;
+		std::vector<std::string> input = file_parser::get_lines(INPUT_FILE);
 
-	for (const std::string& s : input) {
-		game_list.push_back(to_game(s));
+		std::vector<Game> game_list{ to_game_list(input) };
+
+		auto end = std::chrono::high_resolution_clock::now();
+
+		std::cout << "Part 1: " << sum_possible_game_ids(game_list) << '\n';
+		std::cout << "Part 2: " << sum_cube_powers(game_list) << '\n';
+
+		std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
 	}
 
-	auto end = std::chrono::high_resolution_clock::now();
+	Game to_game(const std::string& text) {
+		Game game;
 
-	std::cout << "Part 1: " << part_one(game_list) << '\n';
-	std::cout << "Part 2: " << part_two(game_list) << '\n';
-
-	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
-}
-
-int day_02::part_one(const std::vector<Game>& game_list) {
-	// convert list of strings to list of games
-	// ensure sufficient space is reserved for all games to avoid reallocation
-	auto total_score = [](int i, const Game& g) -> int {
-		if (g.is_possible()) {
-			return i + g.id;
+		std::string::const_iterator it{ text.begin() };
+		int n{ 0 };
+		while (it != text.end()) {
+			if (isdigit(*it)) {
+				n = n * 10 + (*it - '0');
+			}
+			else if (*it == ' ' || n == 0) {
+				++it;
+				continue;
+			}
+			else if (*it == ':') {
+				game.id = n;
+				n = 0;
+			}
+			else if (*it == 'r') {
+				game.max_red = n > game.max_red ? n : game.max_red;
+				n = 0;
+			}
+			else if (*it == 'g') {
+				game.max_green = n > game.max_green ? n : game.max_green;
+				n = 0;
+			}
+			else if (*it == 'b') {
+				game.max_blue = n > game.max_blue ? n : game.max_blue;
+				n = 0;
+			}
+			++it;
 		}
-		return i;
-		};
 
-	return std::accumulate(game_list.begin(), game_list.end(), 0, total_score);
-	
-	/*
-	// classic for loop in place of algorithm:
-	int score{};
-	for (const auto& g : game_list) {
-		if (g.is_possible()) {
-			score += g.id;
-		}
+		return game;
+
 	}
 
-	return score;*/
-}
+	std::vector<Game> to_game_list(const std::vector<std::string>& list) {
+		std::vector<Game> game_list;
 
-int day_02::part_two(const std::vector<Game>& game_list) {
-	auto total_score = [](int i, const Game& g) -> int {
-		return i + g.cube_power();
-		};
-
-	return std::accumulate(game_list.begin(), game_list.end(), 0, total_score);
-}
-
-Game day_02::to_game(const std::string& text) {
-	Game game;
-
-	auto max_int = [&](std::regex rgx) -> int {
-		int max{};
-		std::smatch match;
-		std::string temp(text);
-		while (std::regex_search(temp, match, rgx)) {
-			int n = std::stoi(match[1].str());
-			max = n > max ? n : max;
-			temp = match.suffix();
+		for (const std::string& s : list) {
+			game_list.push_back(to_game(s));
 		}
-		return max;
-	};
 
-	game.id = max_int(std::regex("Game (\\d+)"));
-	game.max_red = max_int(std::regex("(\\d+) r"));
-	game.max_green = max_int(std::regex("(\\d+) g"));
-	game.max_blue = max_int(std::regex("(\\d+) b"));
+		return game_list;
+	}
 
-	return game;
+	bool is_possible(const Game& g) {
+		return g.max_red < 13 && g.max_green < 14 && g.max_blue < 15;
+	}
+
+	int cube_power(const Game& g) {
+		return g.max_red * g.max_green * g.max_blue;
+	}
+
+	int sum_possible_game_ids(const std::vector<Game>& game_list) {
+		// convert list of strings to list of games
+		// ensure sufficient space is reserved for all games to avoid reallocation
+		auto total_score = [](int i, const Game& g) -> int {
+			if (is_possible(g)) {
+				return i + g.id;
+			}
+			return i;
+			};
+
+		return std::accumulate(game_list.begin(), game_list.end(), 0, total_score);
+	}
+
+	int sum_cube_powers(const std::vector<Game>& game_list) {
+		auto total_score = [](int i, const Game& g) -> int {
+			return i + cube_power(g);
+			};
+
+		return std::accumulate(game_list.begin(), game_list.end(), 0, total_score);
+	}
+
 }

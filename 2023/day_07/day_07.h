@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "parser.h"
+#include "file_parser.h"
 
 namespace day_07 {
 	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_07\\input.txt" };

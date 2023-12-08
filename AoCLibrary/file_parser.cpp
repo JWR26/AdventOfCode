@@ -1,6 +1,6 @@
-#include "parser.h"
+#include "file_parser.h"
 
-std::vector<std::string> parser::get_lines(const std::string& file_path) {
+std::vector<std::string> file_parser::get_lines(const std::string& file_path) {
 	std::ifstream data{ file_path };
 	std::vector<std::string> all_lines;
 	std::string line{};
@@ -13,7 +13,7 @@ std::vector<std::string> parser::get_lines(const std::string& file_path) {
 	return all_lines;
 }
 
-std::vector<std::vector<char>> parser::file_to_grid(const std::string& file_path) {
+std::vector<std::vector<char>> file_parser::file_to_grid(const std::string& file_path) {
 	std::ifstream data{ file_path };
 	std::vector<std::vector<char>> grid;
 
@@ -34,7 +34,7 @@ std::vector<std::vector<char>> parser::file_to_grid(const std::string& file_path
 	return grid;
 }
 
-std::pair < std::vector<std::vector<char>>, std::vector < std::pair<int, int>>> parser::to_grid_with_positions(const std::string& file_path, const std::function<bool(char)>& pred) {
+std::pair < std::vector<std::vector<char>>, std::vector < std::pair<int, int>>> file_parser::to_grid_with_positions(const std::string& file_path, const std::function<bool(char)>& pred) {
 	std::ifstream data{ file_path };
 	std::vector<std::vector<char>> grid;
 	std::vector<std::pair<int, int>> positions;
@@ -63,7 +63,7 @@ std::pair < std::vector<std::vector<char>>, std::vector < std::pair<int, int>>> 
 	return std::make_pair(grid, positions);
 }
 
-std::string parser::read_to_string(const std::string& file_path) {
+std::string file_parser::read_to_string(const std::string& file_path) {
 	std::ifstream data{ file_path };
 	std::ostringstream ss;
 	ss << data.rdbuf();

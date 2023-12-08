@@ -6,7 +6,7 @@
 #include <numeric>
 #include <string>
 
-#include "parser.h"
+#include "file_parser.h"
 
 namespace day_03 {
 	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_03\\input.txt" };

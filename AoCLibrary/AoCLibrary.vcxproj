@@ -136,10 +136,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="graph.h" />
-    <ClInclude Include="parser.h" />
+    <ClInclude Include="file_parser.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="file_parser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

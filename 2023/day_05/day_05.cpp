@@ -129,11 +129,10 @@ void day_05::print_answers() {
 		return false;
 		};
 
-	/*
+	
 	while (!in_seed_range(find_location_seed(part_2))) {
 		++part_2;
 	}
-	*/
 
 	auto end = std::chrono::high_resolution_clock::now();
 

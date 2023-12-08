@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include "parser.h"
+#include "file_parser.h"
 
 namespace day_01 {
 	void print_answers();

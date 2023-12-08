@@ -14,7 +14,7 @@ std::vector<day_07::Hand> day_07::get_hands(const std::vector<std::string>& stri
 void day_07::print_answers() {
 	std::cout << day_07::DAY_NAME << std::endl; 
 	// get strings
-	std::vector<std::string> input{ parser::get_lines(day_07::INPUT_FILE) };
+	std::vector<std::string> input{ file_parser::get_lines(day_07::INPUT_FILE) };
 
 	std::vector<day_07::Hand> hands{ get_hands(input) };
 

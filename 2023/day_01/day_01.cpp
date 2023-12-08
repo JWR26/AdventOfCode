@@ -3,7 +3,7 @@
 void day_01::print_answers() {
 	std::cout << "--- Day 1: Trebuchet?! ---" << std::endl; 
 
-	std::vector<std::string> input = parser::get_lines(input_file);
+	std::vector<std::string> input = file_parser::get_lines(input_file);
 
 	std::cout << "Part 1: " << part_one(input) << '\n';
 	std::cout << "Part 2: " << part_two(input) << '\n';
@@ -54,7 +54,7 @@ int day_01::part_two(const std::vector<std::string>& input) {
 		int i = find_digit(*first - '0', std::string::npos, forward_find, std::less_equal<size_t>()) * 10;
 
 		auto last = std::find_if(s.rbegin(), s.rend(), std::isdigit);
-		int index = s.size() - std::distance(s.rbegin(), last);
+		int index = static_cast<int>(s.size()) - std::distance(s.rbegin(), last);
 		chunk = s.substr(index);
 		auto reverse_find = [&chunk](const std::string& s) -> size_t { return chunk.rfind(s); };
 		i += find_digit(*last - '0', 0, reverse_find, std::greater_equal<size_t>());

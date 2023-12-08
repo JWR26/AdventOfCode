@@ -3,7 +3,7 @@
 void day_08::print_answers() {
 	std::cout << day_08::DAY_NAME << std::endl; 
 
-	std::vector<std::string> input = parser::get_lines(day_08::INPUT_FILE);
+	std::vector<std::string> input = file_parser::get_lines(day_08::INPUT_FILE);
 
 	std::queue<char> instructions{ get_instructions(input.front()) };
 

@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "parser.h"
+#include "file_parser.h"
 
 
 namespace intcode {
