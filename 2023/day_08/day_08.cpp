@@ -17,15 +17,7 @@ void day_08::print_answers() {
 
 	size_t part_1{ count_steps(network, instructions, day_08::START, e1_cond) };
 
-	auto s2_cond = [](const std::string& str) -> bool {
-		return str.ends_with('A');
-		};
-
-	auto e2_cond = [](const std::string& str) -> bool {
-		return str.ends_with('Z');
-		};
-
-	size_t part_2{ count_simultaneous_steps(network, instructions, s2_cond, e2_cond) };
+	size_t part_2{ count_simultaneous_steps(network, instructions) };
 
 	std::cout << "Part 1: " << part_1 << '\n';
 	std::cout << "Part 2: " << part_2 << '\n';
@@ -77,14 +69,23 @@ size_t day_08::count_steps(const std::map<std::string, std::pair<std::string, st
 	return steps;
 }
 
-size_t day_08::count_simultaneous_steps(const std::map<std::string, std::pair<std::string, std::string>>& network, const std::queue<char>& instructions, const std::function<bool(std::string)>& start_cond, const std::function<bool(std::string)>& end_cond) {
+size_t day_08::count_simultaneous_steps(const std::map<std::string, std::pair<std::string, std::string>>& network, const std::queue<char>& instructions) {
 	size_t steps{1};
 
+	auto s_cond = [](const std::string& str) -> bool {
+		return str.ends_with('A');
+		};
+
+	auto e_cond = [](const std::string& str) -> bool {
+		return str.ends_with('Z');
+		};
+
+
 	for (const auto& [node, _] : network) {
-		if (!start_cond(node)) {
+		if (!s_cond(node)) {
 			continue;
 		}
-		size_t s{ count_steps(network, instructions, node, end_cond) };
+		size_t s{ count_steps(network, instructions, node, e_cond) };
 		steps = std::lcm(steps, s);
 	}
 

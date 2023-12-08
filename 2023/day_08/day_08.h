@@ -26,7 +26,7 @@ namespace day_08 {
 
 	size_t count_steps(const std::map<std::string, std::pair<std::string, std::string>>& network, const std::queue<char>& instructions, const std::string& start, const std::function<bool(std::string)>& end_cond);
 
-	size_t count_simultaneous_steps(const std::map<std::string, std::pair<std::string, std::string>>& network, const std::queue<char>& instructions, const std::function<bool(std::string)>& start_cond, const std::function<bool(std::string)>& end_cond);
+	size_t count_simultaneous_steps(const std::map<std::string, std::pair<std::string, std::string>>& network, const std::queue<char>& instructions);
 
 	void print_answers(); 
 }
