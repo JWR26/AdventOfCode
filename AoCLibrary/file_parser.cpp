@@ -69,3 +69,4 @@ std::string file_parser::read_to_string(const std::string& file_path) {
 	ss << data.rdbuf();
 	return ss.str();
 }
+

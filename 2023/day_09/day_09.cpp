@@ -1,20 +1,15 @@
 #include "day_09.h"
 
 void day_09::print_answers() {
-	std::cout << "Not implemented - Insert day name here" << std::endl; 
+	std::cout << day_09::DAY_NAME; 
+	// input as list of integer lists
+	std::vector<std::vector<long long>> input = file_parser::get_lines_as_number_lists<long long>(day_09::INPUT_FILE);
+	// predict all next values
+	// // find total of predictions
+	std::cout << "Part 1: " << sum_extrapolated_values<long long>(input) << '\n';
 
-	std::cout << "Part 1: " << part_one<int>("input.txt") << '\n';
-	std::cout << "Part 2: " << part_two<int>("input.txt") << '\n';
-}
+	auto reverse = [](std::vector<long long>& v) -> void { std::reverse(v.begin(), v.end()); };
+	std::for_each(input.begin(), input.end(), reverse);
 
-template<typename T>
-T part_one(const std::string& input_file) {
-	T answer{};
-	return answer;
-}
-
-template<typename T>
-T part_two(const std::string& input_file) {
-	T answer{};
-	return answer;
+	std::cout << "Part 2: " << sum_extrapolated_values<long long>(input);
 }

@@ -189,5 +189,7 @@
     <Text Include="day_08\testb.txt" />
     <Text Include="day_08\input.txt" />
     <Text Include="day_08\testc.txt" />
+    <Text Include="day_09\test.txt" />
+    <Text Include="day_09\input.txt" />
   </ItemGroup>
 </Project>

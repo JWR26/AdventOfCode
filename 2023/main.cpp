@@ -33,7 +33,7 @@ int main()
     day_02::print_answers();
     day_03::print_answers();
     day_04::print_answers();
-    day_05::print_answers();
+    // day_05::print_answers();
     day_06::print_answers();
     day_07::print_answers();
     day_08::print_answers();
