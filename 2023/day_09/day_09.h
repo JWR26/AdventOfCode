@@ -28,12 +28,10 @@ namespace day_09 {
 
 	template<typename T = int>
 	T sum_extrapolated_values(const std::vector<std::vector<T>>& rapport) {
-		std::vector<T> values;
+		auto op = [](int n, const std::vector<T>& v) -> int {
+			return n + predict_next(v);
+			};
 
-		for (const std::vector<T>& v : rapport) {
-			values.push_back(predict_next(v));
-		}
-
-		return std::accumulate(values.begin(), values.end(), 0);
+		return std::accumulate(rapport.begin(), rapport.end(), 0, op);
 	}
 }
