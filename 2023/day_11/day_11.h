@@ -16,7 +16,7 @@ namespace day_11 {
 
 	void print_answers();
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	std::vector<std::pair<T, T>> find_galaxies(const grid& g) {
 		std::vector<std::pair<T, T>> galaxies;
 
@@ -36,7 +36,7 @@ namespace day_11 {
 		return galaxies;
 	}
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	std::vector<T> find_empty_rows(const grid& g) {
 		std::vector<T> empty_rows;
 		
@@ -51,7 +51,7 @@ namespace day_11 {
 		return empty_rows;
 	}
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	std::vector<T> find_empty_columns(const grid& g) {
 		std::vector<T> empty_columns;
 
@@ -66,7 +66,7 @@ namespace day_11 {
 		return empty_columns;
 	}
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	T calculate_adjusted_difference(const T& a, const T& b, const std::vector<T>& v, const T& factor = 1) {
 		T diff = abs(a - b);
 
@@ -78,7 +78,7 @@ namespace day_11 {
 		return diff;
 	}
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	T calculate_adjusted_manhattan(const std::pair<T, T>& a, const std::pair<T, T>& b, const std::vector<T>& rows, const std::vector<T>& columns, const T& factor = 1) {
 		T dx = calculate_adjusted_difference(a.first, b.first, rows, factor);
 		T dy = calculate_adjusted_difference(a.second, b.second, columns, factor);
@@ -86,7 +86,7 @@ namespace day_11 {
 		return dx + dy;
 	}
 
-	template<typename T = int>
+	template<typename T = int64_t>
 	T sum_shortest_paths(const std::vector<std::pair<T, T>>& galaxies, const std::vector<T>& empty_rows, const std::vector<T>& empty_columns, const T& factor = 1) {
 		T total{ 0 };
 
