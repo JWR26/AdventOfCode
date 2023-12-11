@@ -149,6 +149,7 @@ namespace day_10 {
 				if (input[i][j] == '-') {
 					continue;
 				}
+
 				if (input[i][j] == '|' || input[i][j] == 'J' || input[i][j] == 'L') {
 					enclosed = !enclosed;
 					continue;
