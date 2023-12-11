@@ -11,5 +11,5 @@ void day_09::print_answers() {
 	auto reverse = [](std::vector<long long>& v) -> void { std::reverse(v.begin(), v.end()); };
 	std::for_each(input.begin(), input.end(), reverse);
 
-	std::cout << "Part 2: " << sum_extrapolated_values<long long>(input);
+	std::cout << "Part 2: " << sum_extrapolated_values<long long>(input) << '\n';
 }
