@@ -94,7 +94,7 @@ namespace test2023
 			expected.add_edge(graph::vertex<char>(3, 3, 'J'), graph::vertex<char>(2, 3, '-'));
 			expected.add_edge(graph::vertex<char>(2, 3, '-'), graph::vertex<char>(3, 3, 'J'));
 			// pipes not in loop
-			expected.add_edge(graph::vertex<char>(0, 1, '7'), graph::vertex<char>(0, 1, 'L'));
+			expected.add_edge(graph::vertex<char>(0, 1, '7'), graph::vertex<char>(0, 2, 'L'));
 			expected.add_edge(graph::vertex<char>(0, 2, 'L'), graph::vertex<char>(0, 1, '7'));
 			expected.add_edge(graph::vertex<char>(3, 0, 'F'), graph::vertex<char>(4, 0, '7'));
 			expected.add_edge(graph::vertex<char>(4, 0, '7'), graph::vertex<char>(3, 0, 'F'));

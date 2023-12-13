@@ -224,6 +224,8 @@
     <Text Include="day_10\test_sloop.txt" />
     <Text Include="day_11\input.txt" />
     <Text Include="day_11\test.txt" />
+    <Text Include="day_12\input.txt" />
+    <Text Include="day_12\test.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AoCLibrary\AoCLibrary.vcxproj">

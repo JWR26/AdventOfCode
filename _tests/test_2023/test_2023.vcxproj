@@ -172,6 +172,7 @@
     <ClCompile Include="test_day_09.cpp" />
     <ClCompile Include="test_day_10.cpp" />
     <ClCompile Include="test_day_11.cpp" />
+    <ClCompile Include="test_day_12.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

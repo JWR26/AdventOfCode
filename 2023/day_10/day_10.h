@@ -14,7 +14,7 @@ namespace day_10 {
 	template<typename T = char>
 	using grid = std::vector<std::vector<T>>;
 
-	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_10\\input.txt" };
+	const std::string INPUT_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_10\\testa.txt" };
 	const std::string DOUG_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_10\\doug_input.txt" };
 	const std::string TEST_FILE{ "C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2023\\day_10\\teste.txt" };
 	const std::string DAY_NAME{ "--- Day 10: Pipe Maze ----\n" };

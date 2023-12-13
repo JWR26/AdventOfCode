@@ -21,10 +21,10 @@ namespace test2023
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
 
-			const std::vector<std::pair<int, int>> ACTUAL{ day_11::find_galaxies(TEST_INPUT) };
+			const std::vector<std::pair<int64_t, int64_t>> ACTUAL{ day_11::find_galaxies(TEST_INPUT) };
 
 
-			const std::vector<std::pair<int, int>> EXPECTED{
+			const std::vector<std::pair<int64_t, int64_t>> EXPECTED{
 				std::make_pair(0, 3),
 				std::make_pair(1, 7),
 				std::make_pair(2, 0),
@@ -43,9 +43,9 @@ namespace test2023
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
 
-			const std::vector<int> ACTUAL{ day_11::find_empty_rows(TEST_INPUT) };
+			const std::vector<int64_t> ACTUAL{ day_11::find_empty_rows(TEST_INPUT) };
 
-			const std::vector<int> EXPECTED{ 3, 7 };
+			const std::vector<int64_t> EXPECTED{ 3, 7 };
 
 			Assert::IsTrue(EXPECTED == ACTUAL);
 		}
@@ -54,22 +54,22 @@ namespace test2023
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
 
-			const std::vector<int> ACTUAL{ day_11::find_empty_columns(TEST_INPUT) };
+			const std::vector<int64_t> ACTUAL{ day_11::find_empty_columns(TEST_INPUT) };
 
-			const std::vector<int> EXPECTED{ 2, 5, 8 };
+			const std::vector<int64_t> EXPECTED{ 2, 5, 8 };
 
 			Assert::IsTrue(EXPECTED == ACTUAL);
 		}
 
 		TEST_METHOD(TestAdjustedDifferences)
 		{
-			const std::vector<int> VALUES{ 5, 7, 8 };
+			const std::vector<int64_t> VALUES{ 5, 7, 8 };
 			
-			int a{ 2 };
-			int b{ 4 };
+			int64_t a{ 2 };
+			int64_t b{ 4 };
 
-			int expected{ 2 };
-			int actual{ day_11::calculate_adjusted_difference(a, b, VALUES) };
+			int64_t expected{ 2 };
+			int64_t actual{ day_11::calculate_adjusted_difference(a, b, VALUES) };
 			Assert::AreEqual(expected, actual);
 
 			// number order independant
@@ -94,18 +94,18 @@ namespace test2023
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
 
-			const std::vector<int> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
+			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
 
 
-			const std::vector<int> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
+			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
 
 
-			const std::pair<int, int> A{ std::make_pair(5, 1) };
-			const std::pair<int, int> B{ std::make_pair(9, 4) };
+			const std::pair<int64_t, int64_t> A{ std::make_pair(5, 1) };
+			const std::pair<int64_t, int64_t> B{ std::make_pair(9, 4) };
 
-			const int ACTUAL{ day_11::calculate_adjusted_manhattan(A, B, ROWS, COLUMNS, 1) };
+			const int64_t ACTUAL{ day_11::calculate_adjusted_manhattan(A, B, ROWS, COLUMNS) };
 
-			const int EXPECTED{ 9 };
+			const int64_t EXPECTED{ 9 };
 
 			Assert::AreEqual(EXPECTED, ACTUAL);
 		}
@@ -113,36 +113,40 @@ namespace test2023
 		TEST_METHOD(TestPartOne)
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
-			const std::vector<std::pair<int, int>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
-			const std::vector<int> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
-			const std::vector<int> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
+			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
+			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
+			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
 
-			const int ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS, 1) };
-			const int EXPECTED{ 374 };
+			const int64_t ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS) };
+			const int64_t EXPECTED{ 374 };
 			Assert::AreEqual(EXPECTED, ACTUAL);
 		}
 
 		TEST_METHOD(TestPartTwoTen)
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
-			const std::vector<std::pair<int, int>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
-			const std::vector<int> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
-			const std::vector<int> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
+			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
+			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
+			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
 
-			const int ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS, 9) };
-			const int EXPECTED{ 1030 };
+			const int64_t FACTOR{ 9 };
+
+			const int64_t ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS, FACTOR) };
+			const int64_t EXPECTED{ 1030 };
 			Assert::AreEqual(EXPECTED, ACTUAL);
 		}
 
 		TEST_METHOD(TestPartTwoHundred)
 		{
 			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
-			const std::vector<std::pair<int, int>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
-			const std::vector<int> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
-			const std::vector<int> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
+			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
+			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
+			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
 
-			const int ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS, 99) };
-			const int EXPECTED{ 8410 };
+			const int64_t FACTOR{ 99 };
+
+			const int64_t ACTUAL{ day_11::sum_shortest_paths(GALAXIES, ROWS, COLUMNS, FACTOR) };
+			const int64_t EXPECTED{ 8410 };
 			Assert::AreEqual(EXPECTED, ACTUAL);
 		}
 	};

@@ -1,20 +1,15 @@
 #include "day_12.h"
 
 void day_12::print_answers() {
-	std::cout << "Not implemented - Insert day name here" << std::endl; 
+	std::cout << DAY_NAME; 
 
-	std::cout << "Part 1: " << part_one<int>("input.txt") << '\n';
-	std::cout << "Part 2: " << part_two<int>("input.txt") << '\n';
+	const std::vector<std::string> INPUT{ file_parser::get_lines(INPUT_FILE) };
+
+	ConditionRecords records{ get_records(INPUT) };
+
+	int part_1{ sum_records(records) };
+
+	std::cout << "Part 1: " << part_1 << '\n';
+
 }
 
-template<typename T>
-T part_one(const std::string& input_file) {
-	T answer{};
-	return answer;
-}
-
-template<typename T>
-T part_two(const std::string& input_file) {
-	T answer{};
-	return answer;
-}
