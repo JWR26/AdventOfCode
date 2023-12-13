@@ -62,7 +62,7 @@ namespace day_12 {
 	}
 
 	template<typename T = int>
-	T possible_arrangements(std::string::iterator first, std::string::iterator last, std::vector<T> pattern, T index, T n) {
+	T possible_arrangements(std::string::iterator first, std::string::iterator last, const std::vector<T>& pattern, T index, T n) {
 		T arrangements{};
 
 		while (first != last) {
