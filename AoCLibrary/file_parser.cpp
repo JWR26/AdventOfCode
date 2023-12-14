@@ -70,3 +70,21 @@ std::string file_parser::read_to_string(const std::string& file_path) {
 	return ss.str();
 }
 
+std::vector<std::vector<std::string>> file_parser::get_paragraphs(const std::string& file_path) {
+	std::ifstream data{ file_path };
+	std::vector<std::vector<std::string>> paragraphs;
+	std::vector<std::string> lines;
+	std::string line{};
+	while (data) {
+		std::getline(data, line, '\n');
+		if (!line.empty()) {
+			lines.push_back(line);
+		}
+		else {
+			paragraphs.push_back(lines);
+			lines.clear();
+		}
+	}
+	return paragraphs;
+}
+
