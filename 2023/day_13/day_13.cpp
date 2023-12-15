@@ -111,7 +111,7 @@ std::string::iterator day_13::single_mismatch(std::string& a, std::string& b) {
 int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) {
 	int original{ reflection_line_score(pattern) };
 
-	std::cout << "\n  Orignial: " << original << " -> ";
+	std::cout << "  Orignial: " << original << " -> ";
 
 	for (int i{ 0 }; i < pattern.size(); ++i) {
 		for (int j{ i + 1 }; j < pattern.size(); ++j) {
@@ -138,7 +138,7 @@ int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) 
 			}
 		}
 	}
-
+	std::cout << '\n';
 	return original;
 }
 

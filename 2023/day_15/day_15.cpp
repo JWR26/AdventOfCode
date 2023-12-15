@@ -50,14 +50,20 @@ std::map<int, std::list<day_15::lens>> day_15::fill_boxes(const std::vector<std:
 	std::map<int, std::list<lens>> boxes;
 
 	for (const std::string& step : sequence) {
-		std::string id{ step.begin(), step.begin() + 2 };
+		std::string::const_iterator it{ step.begin() };
+		std::string id{};
+		while (isalpha(*it)) {
+			id += *it;
+			++it;
+		}
 		int box = hash_string(id);
+		
 		auto match_id = [&id](lens l) -> bool {
 			return l.label == id;
 			};
 		
-		if (step[2] == '=') {
-			int fl = step[3] - '0';
+		if (*it == '=') {
+			int fl = *++it - '0';
 			auto res = std::find_if(boxes[box].begin(), boxes[box].end(), match_id);
 			if (res != boxes[box].end()) {
 				res->focal_length = fl;
