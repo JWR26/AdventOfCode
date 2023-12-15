@@ -169,5 +169,52 @@ namespace test2023
 
 			Assert::IsTrue(expected == actual);
 		}
+
+		TEST_METHOD(FindAlternative1)
+		{
+			std::vector<std::string> INPUT{
+				"#.##..##.",
+				"..#.##.#.",
+				"##......#",
+				"##......#",
+				"..#.##.#.",
+				"..##..##.",
+				"#.#.##.#.",
+			};
+
+			int actual{ day_13::find_alternative_reflection_line(INPUT) };
+			int expected{ 300 };
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FindAlternative2)
+		{
+			std::vector<std::string> INPUT{
+				"#...##..#",
+				"#....#..#",
+				"..##..###",
+				"#####.##.",
+				"#####.##.",
+				"..##..###",
+				"#....#..#",
+			};
+
+			int actual{ day_13::find_alternative_reflection_line(INPUT) };
+			int expected{ 100 };
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(TestPart2)
+		{
+			const std::vector<std::vector<std::string>> INPUT{ file_parser::get_paragraphs(TEST_FILE) };
+
+			int actual{ day_13::summarise_unsmudged_notes(INPUT) };
+			int expected{ 400 };
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
 	};
 }

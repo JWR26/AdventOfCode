@@ -13,6 +13,21 @@ std::vector<std::string> file_parser::get_lines(const std::string& file_path) {
 	return all_lines;
 }
 
+
+std::vector<std::string> file_parser::split_file_by(const std::string& file_path, const char& delimiter) {
+	std::ifstream data{ file_path };
+	std::vector<std::string> strings;
+	std::string line{};
+	while (data) {
+		std::getline(data, line, delimiter);
+		if (!line.empty()) {
+			strings.push_back(line);
+		}
+		line.clear();
+	}
+	return strings;
+}
+
 std::vector<std::vector<char>> file_parser::file_to_grid(const std::string& file_path) {
 	std::ifstream data{ file_path };
 	std::vector<std::vector<char>> grid;

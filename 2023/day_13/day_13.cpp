@@ -7,7 +7,10 @@ void day_13::print_answers() {
 
 	int part_1{ summarise_notes(INPUT) };
 
+	int part_2{ summarise_unsmudged_notes(INPUT) };
+
 	std::cout << "Part 1: " << part_1 << '\n';
+	std::cout << "Part 2: " << part_2 << '\n';
 
 }
 
@@ -72,6 +75,16 @@ int day_13::reflection_line_score(const std::vector<std::string>& pattern) {
 	return score;
 }
 
+
+/*
+add a new function here that takes a current score and does not return the same, taking in a vector of strings
+
+calculate line & score
+if score is same as before, 
+calculate from line + distance(begin, line)
+*/
+
+
 int day_13::summarise_notes(const std::vector<std::vector<std::string>>& notes) {
 	auto op = [](int i, std::vector<std::string> n) -> int {
 		return i + reflection_line_score(n);
@@ -95,3 +108,44 @@ std::string::iterator day_13::single_mismatch(std::string& a, std::string& b) {
 	return a.end();
 }
 
+int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) {
+	int original{ reflection_line_score(pattern) };
+
+	std::cout << "\n  Orignial: " << original << " -> ";
+
+	for (int i{ 0 }; i < pattern.size(); ++i) {
+		for (int j{ i + 1 }; j < pattern.size(); ++j) {
+			std::string::iterator res{ single_mismatch(pattern[i], pattern[j])};
+			if (res == pattern[i].end()) {
+				continue;
+			}
+			*res = FLIP.at(*res);
+			int score{ find_reflection_line(pattern.begin() + i, pattern.end()) };
+			// horizontal reflection
+			std::cout << score << " , ";
+			if (score != 0) {
+				return score * 100;
+			}
+
+			// vertical reflection
+			std::vector<std::string> transposed{ transpose(pattern) };
+			score = find_reflection_line(transposed.begin() + i , transposed.end());
+			// rest the smudge back to what it was
+			*res = FLIP.at(*res);
+			std::cout << score;
+			if (score != 0) {
+				return score;
+			}
+		}
+	}
+
+	return original;
+}
+
+int day_13::summarise_unsmudged_notes(const std::vector<std::vector<std::string>>& notes) {
+	auto op = [](int i, std::vector<std::string> n) -> int {
+		return i + find_alternative_reflection_line(n);
+		};
+
+	return std::accumulate(notes.begin(), notes.end(), 0, op);
+}

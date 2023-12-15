@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
+#include <string>
+#include <vector>
+
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace testlibrary
@@ -9,7 +13,7 @@ namespace testlibrary
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(TestSplitFileBy)
 		{
 		}
 	};

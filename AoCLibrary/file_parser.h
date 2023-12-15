@@ -14,6 +14,8 @@ namespace file_parser {
 	std::pair < std::vector<std::vector<char>>, std::vector < std::pair<int, int>>> to_grid_with_positions(const std::string& file_path, const std::function<bool(char)>& pred);
 	std::string read_to_string(const std::string& file_path);
 
+	std::vector<std::string> split_file_by(const std::string& file_path, const char& delimiter);
+
 	std::vector<std::vector<std::string>> get_paragraphs(const std::string& file_path);
 
 	template<typename T = int>

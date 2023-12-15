@@ -22,7 +22,7 @@ void day_12::print_answers() {
 
 std::string day_12::get_id(const std::string::iterator& first, const std::string::iterator& last, const size_t& b, const size_t& c) {
 	std::string str{ first, last };
-	str += '/';
+	str += '/'; 
 	str += std::to_string(b);
 	str += '/';
 	str += std::to_string(c);
