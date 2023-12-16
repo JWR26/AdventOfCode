@@ -19,12 +19,6 @@ namespace testlibrary
 			const std::vector<char> data{ 'a', 'a', 'a', 'b', 'b', 'b', 'c', 'c', 'c' };
 			aoc::grid<char> g(data, 3, 3);
 
-			aoc::grid<char>::row_iterator rit{ g.row_begin(1) };
-
-			while (rit != g.row_end(1)) {
-
-			}
-
 		}
 	};
 }
