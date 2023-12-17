@@ -7,7 +7,7 @@ void day_17::print_answers() {
 
 	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
 
-	const grid CITY{ get_grid(INPUT) };
+	const std::shared_ptr<grid> CITY{ std::make_shared<grid>(get_grid(INPUT)) };
 
 	int64_t part_1{ find_min_heat_loss(CITY, 0, MAX_CRUCIBLE) };
 
@@ -44,8 +44,8 @@ void day_17::update_crucible(crucible& c) {
 	++c.consecutive_moves;
 }
 
-bool day_17::on_grid(const grid& g, const crucible& c) {
-	return c.row < g.ROWS && c.column < g.COLUMNS;
+bool day_17::on_grid(const std::shared_ptr<grid> g, const crucible& c) {
+	return c.row < g->ROWS && c.column < g->COLUMNS;
 }
 
 day_17::grid day_17::get_grid(const std::vector<std::vector<char>>& input) {
@@ -63,7 +63,7 @@ day_17::grid day_17::get_grid(const std::vector<std::vector<char>>& input) {
 	return grid(values, rows, cols);
 }
 
-int64_t day_17::find_min_heat_loss(const grid& g, const int& min_turn, const int& max_straight) {
+int64_t day_17::find_min_heat_loss(const std::shared_ptr<grid> g, const int& min_turn, const int& max_straight) {
 
 	std::priority_queue<crucible, std::vector<crucible>, std::greater<crucible>> queue;
 
@@ -76,7 +76,7 @@ int64_t day_17::find_min_heat_loss(const grid& g, const int& min_turn, const int
 
 
 	auto at_end = [&g](const crucible& c) -> bool {
-		return c.row == g.ROWS - 1 && c.column == g.COLUMNS - 1;
+		return c.row == g->ROWS - 1 && c.column == g->COLUMNS - 1;
 		};
 
 	while (!queue.empty()) {
@@ -94,7 +94,7 @@ int64_t day_17::find_min_heat_loss(const grid& g, const int& min_turn, const int
 			continue;
 		}
 
-		c.heat_loss += g.DATA[c.row * g.COLUMNS + c.column];
+		c.heat_loss += g->DATA[c.row * g->COLUMNS + c.column];
 
 		queue.push(c);
 

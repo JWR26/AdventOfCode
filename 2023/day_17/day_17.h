@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
+#include <memory>
 #include <queue>
 #include <string>
 #include <unordered_map>
@@ -47,7 +48,7 @@ namespace day_17 {
 	};
 
 	struct crucible {
-		grid g; // reference grid the crucible is on -> good for hashing
+		std::shared_ptr<grid> g; // reference grid the crucible is on -> good for hashing
 		size_t row{}, column{};
 		DIRECTION direction{ DIRECTION::RIGHT };
 		int consecutive_moves{};
@@ -55,7 +56,7 @@ namespace day_17 {
 
 		crucible() {}
 
-		crucible(const grid& _g, const size_t& r, const size_t& c, const DIRECTION& d, const int& cm, const int64_t h) : g(_g), row(r), column(c), direction(d), consecutive_moves(cm), heat_loss(h) {}
+		crucible(const std::shared_ptr<grid> _g, const size_t& r, const size_t& c, const DIRECTION& d, const int& cm, const int64_t h) : g(_g), row(r), column(c), direction(d), consecutive_moves(cm), heat_loss(h) {}
 
 		bool operator==(const crucible& other) const {
 			return (row == other.row && column == other.column && direction == other.direction);
@@ -86,13 +87,13 @@ namespace day_17 {
 
 	using visited_blocks = std::unordered_map<crucible, crucible>;
 
-	bool on_grid(const grid& g, const crucible& c);
+	bool on_grid(const std::shared_ptr<grid> g, const crucible& c);
 
 	void update_crucible(crucible& c);
 
 	grid get_grid(const std::vector<std::vector<char>>& input);
 
-	int64_t find_min_heat_loss(const grid& g, const int& min_turn, const int& max_straight);
+	int64_t find_min_heat_loss(const std::shared_ptr<grid> g, const int& min_turn, const int& max_straight);
 }
 
 
@@ -103,7 +104,7 @@ namespace std {
 	struct hash<day_17::crucible> {
 	public:
 		size_t operator()(const day_17::crucible& c) const {
-			return c.row * c.g.COLUMNS + c.column + (c.direction * c.g.DATA.size());
+			return c.row * c.g->COLUMNS + c.column + (c.direction * c.g->DATA.size());
 		}
 	};
 }
