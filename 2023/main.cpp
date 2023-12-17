@@ -29,7 +29,7 @@
 
 int main()
 {
-    day_01::print_answers();
+    /*day_01::print_answers();
     day_02::print_answers();
     day_03::print_answers();
     day_04::print_answers();
@@ -45,7 +45,7 @@ int main()
     day_14::print_answers();
     day_15::print_answers();
     day_16::print_answers();
-    day_17::print_answers();
+    */day_17::print_answers();
     day_18::print_answers();
     day_19::print_answers();
     day_20::print_answers();
