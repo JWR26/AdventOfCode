@@ -14,14 +14,14 @@ void day_17::print_answers() {
 	auto t2{ std::chrono::high_resolution_clock::now() };
 	
 	std::cout << "Part 1: " << part_1 << '\n';
-	std::cout << std::chrono::duration_cast<std::chrono::seconds>(t2 - t1) << '\n';
+	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1) << '\n';
 
 	int64_t part_2{ find_min_heat_loss(CITY, MIN_ULTRA, MAX_ULTRA) };
 	
 	auto t3{ std::chrono::high_resolution_clock::now() };
 	
 	std::cout << "Part 2: " << part_2 << '\n';
-	std::cout << std::chrono::duration_cast<std::chrono::seconds>(t3 - t2) << '\n';
+	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(t3 - t2) << '\n';
 
 }
 
