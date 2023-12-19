@@ -1,20 +1,47 @@
 #include "day_14.h"
 
 void day_14::print_answers() {
-	std::cout << "Not implemented - Insert day name here" << std::endl; 
+	std::cout << DAY_NAME;
 
-	std::cout << "Part 1: " << part_one<int>("input.txt") << '\n';
-	std::cout << "Part 2: " << part_two<int>("input.txt") << '\n';
-}
+	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
 
-template<typename T>
-T part_one(const std::string& input_file) {
-	T answer{};
-	return answer;
-}
+	aoc::grid<char> grid{ INPUT };
 
-template<typename T>
-T part_two(const std::string& input_file) {
-	T answer{};
-	return answer;
+	std::cout << grid;
+
+	for (size_t c{}; c < grid._columns; ++c) {
+		aoc::grid<char>::column_iterator first{ grid.column_begin(c) };
+		aoc::grid<char>::column_iterator second{ grid.column_begin(c) };
+
+		while (second != grid.column_end(c)) {
+			if (first == second) {
+				++second;
+				continue;
+			}
+
+			if (*first == 'O') {
+				++first;
+				continue;
+			}
+			
+			if (*second == '.') {
+				++second;
+				continue;
+			}
+
+			if (*second == 'O' && *first == '.') {
+				std::iter_swap(first, second);
+				continue;
+			}
+
+			if (*second == '#') {
+				++second;
+				first = second;
+				continue;
+			}
+		}
+	}
+
+	std::cout << '\n' << '\n' << grid;
+
 }
