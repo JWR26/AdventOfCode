@@ -7,7 +7,7 @@ void day_14::print_answers() {
 
 	aoc::grid<char> grid{ INPUT };
 
-	std::cout << grid;
+	// std::cout << grid << '\n';
 
 	for (size_t c{}; c < grid._columns; ++c) {
 		aoc::grid<char>::column_iterator first{ grid.column_begin(c) };
@@ -19,7 +19,7 @@ void day_14::print_answers() {
 				continue;
 			}
 
-			if (*first == 'O') {
+			if (*first == 'O' || *first == '#') {
 				++first;
 				continue;
 			}
@@ -42,6 +42,19 @@ void day_14::print_answers() {
 		}
 	}
 
-	std::cout << '\n' << '\n' << grid;
+	// std::cout << grid << '\n';
 
+	int part_1{};
+
+	for (size_t r{}; r < grid._rows; ++r) {
+		aoc::grid<char>::row_iterator r_it{ grid.row_begin(r) };
+		while (r_it != grid.row_end(r)) {
+			if (*r_it == 'O') {
+				part_1 += grid._rows - r;
+			}
+			++r_it;
+		}
+	}
+
+	std::cout << "Part 1: " << part_1 << '\n';
 }
