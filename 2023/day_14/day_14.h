@@ -1,7 +1,9 @@
 #pragma once
 
 #include <algorithm>
+#include <chrono>
 #include <iostream>
+#include <vector>
 
 #include "file_parser.h"
 #include "grid.h"

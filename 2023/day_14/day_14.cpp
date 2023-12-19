@@ -3,6 +3,8 @@
 void day_14::print_answers() {
 	std::cout << DAY_NAME;
 
+	auto t1 = std::chrono::high_resolution_clock::now();
+
 	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
 
 	aoc::grid<char> grid{ INPUT };
@@ -56,5 +58,9 @@ void day_14::print_answers() {
 		}
 	}
 
+	auto t2 = std::chrono::high_resolution_clock::now();
+
 	std::cout << "Part 1: " << part_1 << '\n';
+
+	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
 }
