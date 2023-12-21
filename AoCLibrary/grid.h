@@ -16,7 +16,7 @@ namespace aoc {
 
 		grid() {}
 
-		grid(const grid<T>& other) : _data(other.data()), _rows(other.rows()), _columns(other.columns()) {}
+		grid(const grid<T>& other) : _data(other._data), _rows(other._rows), _columns(other._columns) {}
 
 		grid(const std::vector<T>& d, const size_t& r, const size_t& c) : _data(d), _rows(r), _columns(c) {}
 
@@ -151,6 +151,14 @@ namespace aoc {
 			_data = rhs._data;
 			_rows = rhs._rows;
 			_columns = rhs._columns;
+		}
+
+		bool operator==(const grid<T>& other) const {
+			return _data == other._data && _rows == other._rows && _columns == other._columns;
+		}
+
+		bool operator!=(const grid<T>& other) const {
+			return !(*this == other);
 		}
 
 		friend std::ostream& operator<<(std::ostream& os, const grid<T>& grid) {
