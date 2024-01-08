@@ -111,8 +111,6 @@ std::string::iterator day_13::single_mismatch(std::string& a, std::string& b) {
 int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) {
 	int original{ reflection_line_score(pattern) };
 
-	std::cout << "  Orignial: " << original << " -> ";
-
 	for (int i{ 0 }; i < pattern.size(); ++i) {
 		for (int j{ i + 1 }; j < pattern.size(); ++j) {
 			std::string::iterator res{ single_mismatch(pattern[i], pattern[j])};
@@ -122,7 +120,6 @@ int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) 
 			*res = FLIP.at(*res);
 			int score{ find_reflection_line(pattern.begin() + i, pattern.end()) };
 			// horizontal reflection
-			std::cout << score << " , ";
 			if (score != 0) {
 				return score * 100;
 			}
@@ -132,13 +129,11 @@ int day_13::find_alternative_reflection_line(std::vector<std::string>& pattern) 
 			score = find_reflection_line(transposed.begin() + i , transposed.end());
 			// rest the smudge back to what it was
 			*res = FLIP.at(*res);
-			std::cout << score;
 			if (score != 0) {
 				return score;
 			}
 		}
 	}
-	std::cout << '\n';
 	return original;
 }
 

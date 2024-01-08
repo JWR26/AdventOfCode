@@ -41,15 +41,15 @@ int main()
     day_10::print_answers();
     day_11::print_answers();
     day_12::print_answers();
-    day_13::print_answers();
+    day_13::print_answers();*/
     day_14::print_answers();
-    day_15::print_answers();
+    /*day_15::print_answers();
     day_16::print_answers();
     day_17::print_answers();
     day_18::print_answers();
     day_19::print_answers();
-    day_20::print_answers();*/
-    day_21::print_answers();/*
+    day_20::print_answers();
+    day_21::print_answers();
     day_22::print_answers();
     day_23::print_answers();
     day_24::print_answers();

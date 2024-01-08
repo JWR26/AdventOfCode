@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
+#include <unordered_set>
 #include <vector>
 
 #include "file_parser.h"
@@ -55,4 +56,6 @@ namespace day_14 {
 	void cycle(aoc::grid<char>& g);
 
 	aoc::grid<char> spin_cycle(const aoc::grid<char>& grid, const size_t& n);
+
+	int calculate_north_load(aoc::grid<char>& grid);
 }
