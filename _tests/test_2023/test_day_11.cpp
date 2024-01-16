@@ -19,7 +19,7 @@ namespace test2023
 
 		TEST_METHOD(TestFindGalaxies)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 
 			const std::vector<std::pair<int64_t, int64_t>> ACTUAL{ day_11::find_galaxies(TEST_INPUT) };
 
@@ -41,7 +41,7 @@ namespace test2023
 
 		TEST_METHOD(TestFindEmptyRows)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 
 			const std::vector<int64_t> ACTUAL{ day_11::find_empty_rows(TEST_INPUT) };
 
@@ -52,7 +52,7 @@ namespace test2023
 
 		TEST_METHOD(TestFindEmptyColumns)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 
 			const std::vector<int64_t> ACTUAL{ day_11::find_empty_columns(TEST_INPUT) };
 
@@ -92,7 +92,7 @@ namespace test2023
 
 		TEST_METHOD(TestAdjustedManhattan)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 
 			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
 
@@ -112,7 +112,7 @@ namespace test2023
 
 		TEST_METHOD(TestPartOne)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
 			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
 			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
@@ -124,7 +124,7 @@ namespace test2023
 
 		TEST_METHOD(TestPartTwoTen)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
 			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
 			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };
@@ -138,7 +138,7 @@ namespace test2023
 
 		TEST_METHOD(TestPartTwoHundred)
 		{
-			const day_11::grid TEST_INPUT{ file_parser::file_to_grid(TEST_FILE) };
+			const day_11::grid TEST_INPUT{ aoc::file_to_grid(TEST_FILE) };
 			const std::vector<std::pair<int64_t, int64_t>> GALAXIES{ day_11::find_galaxies(TEST_INPUT) };
 			const std::vector<int64_t> ROWS{ day_11::find_empty_rows(TEST_INPUT) };
 			const std::vector<int64_t> COLUMNS{ day_11::find_empty_columns(TEST_INPUT) };

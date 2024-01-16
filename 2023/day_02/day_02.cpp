@@ -7,7 +7,7 @@ namespace day_02 {
 
 		auto begin = std::chrono::high_resolution_clock::now();
 
-		std::vector<std::string> input = file_parser::get_lines(INPUT_FILE);
+		std::vector<std::string> input = aoc::get_lines(INPUT_FILE);
 
 		std::vector<Game> game_list{ to_game_list(input) };
 

@@ -3,7 +3,7 @@
 void day_01::print_answers() {
 	std::cout << "--- Day 1: Not Quite Lisp ---" << std::endl; 
 
-	std::string input = file_parser::read_to_string("C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2015\\day_01\\input_01.txt");
+	std::string input = aoc::read_to_string("C:\\Users\\jonat\\source\\repos\\AdventOfCode\\2015\\day_01\\input_01.txt");
 
 	std::cout << "Part 1: " << part_one(input) << '\n';
 	std::cout << "Part 2: " << part_two(input) << '\n';

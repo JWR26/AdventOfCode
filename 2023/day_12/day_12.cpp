@@ -5,7 +5,7 @@
 void day_12::print_answers() {
 	std::cout << DAY_NAME; 
 
-	const std::vector<std::string> INPUT{ file_parser::get_lines(INPUT_FILE) };
+	const std::vector<std::string> INPUT{ aoc::get_lines(INPUT_FILE) };
 
 	ConditionRecords records{ get_records(INPUT) };
 

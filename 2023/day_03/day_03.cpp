@@ -6,7 +6,7 @@ void day_03::print_answers() {
 
 	auto begin = std::chrono::high_resolution_clock::now();
 
-	auto [grid, positions] = file_parser::to_grid_with_positions(day_03::INPUT_FILE, [](char c) -> bool {return !isdigit(c) && c != '.'; });
+	auto [grid, positions] = aoc::to_grid_with_positions(day_03::INPUT_FILE, [](char c) -> bool {return !isdigit(c) && c != '.'; });
 
 	std::vector<std::vector<int>> schema_numbers = number_schema(grid);
 

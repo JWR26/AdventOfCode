@@ -4,7 +4,7 @@
 void day_15::print_answers() {
 	std::cout << DAY_NAME;
 
-	const std::vector<std::string> INPUT{ file_parser::split_file_by(INPUT_FILE, ',') };
+	const std::vector<std::string> INPUT{ aoc::split_file_by(INPUT_FILE, ',') };
 
 	const int part_1{ sum_sequence(INPUT) };
 

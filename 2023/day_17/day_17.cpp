@@ -5,7 +5,7 @@ void day_17::print_answers() {
 
 	auto t1{ std::chrono::high_resolution_clock::now() };
 
-	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
+	const std::vector<std::vector<char>> INPUT{ aoc::file_to_grid(INPUT_FILE) };
 
 	const std::shared_ptr<grid> CITY{ std::make_shared<grid>(get_grid(INPUT)) };
 

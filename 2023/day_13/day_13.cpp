@@ -3,7 +3,7 @@
 void day_13::print_answers() {
 	std::cout << DAY_NAME; 
 
-	const std::vector<std::vector<std::string>> INPUT{ file_parser::get_paragraphs(INPUT_FILE) };
+	const std::vector<std::vector<std::string>> INPUT{ aoc::get_paragraphs(INPUT_FILE) };
 
 	int part_1{ summarise_notes(INPUT) };
 

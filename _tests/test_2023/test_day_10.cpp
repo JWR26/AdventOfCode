@@ -43,7 +43,7 @@ namespace test2023
 			expected.add_edge(graph::vertex<char>(3, 3, 'J'), graph::vertex<char>(2, 3, '-'));
 			expected.add_edge(graph::vertex<char>(2, 3, '-'), graph::vertex<char>(3, 3, 'J'));
 
-			grid test_input{ file_parser::file_to_grid(TEST_LOOP) };
+			grid test_input{ aoc::file_to_grid(TEST_LOOP) };
 			graph::unweighted<char> actual{ day_10::build_graph<char>(test_input) };
 			Assert::IsTrue(expected == actual);
 		}
@@ -68,7 +68,7 @@ namespace test2023
 			expected.add_edge(graph::vertex<char>(3, 3, 'J'), graph::vertex<char>(2, 3, '-'));
 			expected.add_edge(graph::vertex<char>(2, 3, '-'), graph::vertex<char>(3, 3, 'J'));
 
-			grid test_input{ file_parser::file_to_grid(TEST_SLOOP) };
+			grid test_input{ aoc::file_to_grid(TEST_SLOOP) };
 			graph::unweighted<char> actual{ day_10::build_graph<char>(test_input) };
 			Assert::IsTrue(expected == actual);
 		}
@@ -107,14 +107,14 @@ namespace test2023
 			expected.add_edge(graph::vertex<char>(3, 4, 'J'), graph::vertex<char>(2, 4, '-'));
 			expected.add_edge(graph::vertex<char>(2, 4, '-'), graph::vertex<char>(3, 4, 'J'));
 
-			grid test_input{ file_parser::file_to_grid(TEST_A) };
+			grid test_input{ aoc::file_to_grid(TEST_A) };
 			graph::unweighted<char> actual{ day_10::build_graph<char>(test_input) };
 			Assert::IsTrue(expected == actual);
 		}
 
 		TEST_METHOD(TestFindSimpleCycle) 
 		{
-			grid test_input{ file_parser::file_to_grid(TEST_SLOOP) };
+			grid test_input{ aoc::file_to_grid(TEST_SLOOP) };
 			graph::unweighted<char> graph{ day_10::build_graph<char>(test_input) };
 			graph::vertex<char> start{ graph.find_vertex('S') };
 
@@ -128,7 +128,7 @@ namespace test2023
 
 		TEST_METHOD(TestMarkPathGrid)
 		{
-			grid test_input{ file_parser::file_to_grid(TEST_SLOOP) };
+			grid test_input{ aoc::file_to_grid(TEST_SLOOP) };
 			graph::unweighted<char> graph{ day_10::build_graph<char>(test_input) };
 			graph::vertex<char> start{ graph.find_vertex('S') };
 			graph::result<char> cycle{ day_10::find_cycle(graph, start) };
@@ -148,7 +148,7 @@ namespace test2023
 
 		TEST_METHOD(TestEnclosedArea) 
 		{
-			grid test_input{ file_parser::file_to_grid(TEST_C) };
+			grid test_input{ aoc::file_to_grid(TEST_C) };
 			graph::unweighted<char> graph{ day_10::build_graph<char>(test_input) };
 			graph::vertex<char> start{ graph.find_vertex('S') };
 			graph::result<char> cycle{ day_10::find_cycle(graph, start) };
@@ -162,7 +162,7 @@ namespace test2023
 
 		TEST_METHOD(TestLargerArea)
 		{
-			grid test_input{ file_parser::file_to_grid(TEST_D) };
+			grid test_input{ aoc::file_to_grid(TEST_D) };
 			graph::unweighted<char> graph{ day_10::build_graph<char>(test_input) };
 			graph::vertex<char> start{ graph.find_vertex('S') };
 			graph::result<char> cycle{ day_10::find_cycle(graph, start) };
@@ -176,7 +176,7 @@ namespace test2023
 
 		TEST_METHOD(TestComplexArea)
 		{
-			grid test_input{ file_parser::file_to_grid(TEST_E) };
+			grid test_input{ aoc::file_to_grid(TEST_E) };
 			graph::unweighted<char> graph{ day_10::build_graph<char>(test_input) };
 			graph::vertex<char> start{ graph.find_vertex('S') };
 			graph::result<char> cycle{ day_10::find_cycle(graph, start) };

@@ -3,7 +3,7 @@
 void day_10::print_answers() {
 	std::cout << day_10::DAY_NAME; 
 
-	grid<char> input = file_parser::file_to_grid(day_10::INPUT_FILE);
+	grid<char> input = aoc::file_to_grid(day_10::INPUT_FILE);
 
 	graph::unweighted<char> graph = build_graph(input);
 

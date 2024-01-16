@@ -55,7 +55,7 @@ namespace test2023
 
 		TEST_METHOD(TestHashSequence)
 		{
-			const std::vector<std::string> INPUT{ file_parser::split_file_by(TEST_FILE, ',')};
+			const std::vector<std::string> INPUT{ aoc::split_file_by(TEST_FILE, ',')};
 
 			const int ACTUAL{ day_15::sum_sequence(INPUT) };
 
@@ -66,7 +66,7 @@ namespace test2023
 
 		TEST_METHOD(TestFillBoxes)
 		{
-			const std::vector<std::string> INPUT{ file_parser::split_file_by(TEST_FILE, ',') };
+			const std::vector<std::string> INPUT{ aoc::split_file_by(TEST_FILE, ',') };
 
 			std::map<int, std::list<day_15::lens>> actual{ day_15::fill_boxes(INPUT) };
 
@@ -81,7 +81,7 @@ namespace test2023
 
 		TEST_METHOD(TestFocalPower)
 		{
-			const std::vector<std::string> INPUT{ file_parser::split_file_by(TEST_FILE, ',') };
+			const std::vector<std::string> INPUT{ aoc::split_file_by(TEST_FILE, ',') };
 
 			std::map<int, std::list<day_15::lens>> boxes{ day_15::fill_boxes(INPUT) };
 

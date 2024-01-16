@@ -3,7 +3,7 @@
 void day_16::print_answers() {
 	std::cout << DAY_NAME;
 
-	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
+	const std::vector<std::vector<char>> INPUT{ aoc::file_to_grid(INPUT_FILE) };
 
 	grid g{ get_grid(INPUT) };
 

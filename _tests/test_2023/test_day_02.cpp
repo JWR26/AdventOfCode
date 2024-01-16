@@ -73,7 +73,7 @@ namespace test2023
 
 		TEST_METHOD(TestParseTestFile)
 		{
-			std::vector<std::string> test_input{ file_parser::get_lines(TEST_FILE) };
+			std::vector<std::string> test_input{ aoc::get_lines(TEST_FILE) };
 			std::vector<day_02::Game> game_list{ day_02::to_game_list(test_input) };
 			// validate list length
 			size_t expected_size{ 5 };
@@ -96,7 +96,7 @@ namespace test2023
 
 		TEST_METHOD(TestSumPossibleGameIds)
 		{
-			std::vector<std::string> test_input{ file_parser::get_lines(TEST_FILE) };
+			std::vector<std::string> test_input{ aoc::get_lines(TEST_FILE) };
 			std::vector<day_02::Game> game_list{ day_02::to_game_list(test_input) };
 			int actual{ day_02::sum_possible_game_ids(game_list) };
 			int expected{ 8 };
@@ -105,7 +105,7 @@ namespace test2023
 
 		TEST_METHOD(TestSumCubePowers)
 		{
-			std::vector<std::string> test_input{ file_parser::get_lines(TEST_FILE) };
+			std::vector<std::string> test_input{ aoc::get_lines(TEST_FILE) };
 			std::vector<day_02::Game> game_list{ day_02::to_game_list(test_input) };
 			int actual{ day_02::sum_cube_powers(game_list) };
 			int expected{ 2286 };

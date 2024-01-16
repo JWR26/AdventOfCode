@@ -3,7 +3,7 @@
 void day_09::print_answers() {
 	std::cout << day_09::DAY_NAME; 
 
-	std::vector<std::vector<long long>> input = file_parser::get_lines_as_number_lists<long long>(day_09::INPUT_FILE);
+	std::vector<std::vector<long long>> input = aoc::get_lines_as_number_lists<long long>(day_09::INPUT_FILE);
 
 	std::cout << "Part 1: " << sum_extrapolated_values<long long>(input) << '\n';
 

@@ -1,12 +1,14 @@
-#ifndef GRAPH
-#define GRAPH
+#pragma once
 
+#include <algorithm>
 #include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
 #include <set>
 #include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace graph {
@@ -381,4 +383,162 @@ namespace graph {
 	};
 }
 
-#endif // GRAPH
+namespace aoc {
+
+	template<typename T>
+	struct node {
+		const size_t ID{};
+		T value{};
+
+		node() {}
+
+		node(const size_t& id, const T& v) : ID(id), value(v) {}
+
+		bool operator==(const node<T>& other) const {
+			return ID == other.ID;
+		}
+
+		friend std::ostream& operator<<(std::ostream& os, const node<T>& n) {
+			os << n.ID << '[' << n.value << ']';
+			return os;
+		}
+	};
+
+	template<typename T>
+	struct edge {
+		const node<T> NEIGHBOUR;
+		size_t weight{};
+
+		edge() {}
+
+		edge(const node<T>& n, const size_t& w) : NEIGHBOUR(n), weight(w) {}
+
+		edge<T> operator=(const edge<T>& other) {
+			return edge(other);
+		}
+
+		friend std::ostream& operator<<(std::ostream& os, const edge<T>& e) {
+			os << e.NEIGHBOUR << '(' << e.weight << ')';
+			return os;
+		}
+	};
+
+	template<typename T>
+	using graph = std::unordered_map < node<T>, std::vector<edge<T>>>;
+
+	template<typename T>
+	graph<T>& add_edge(graph<T>& graph, const node<T>& from, const node<T>& to, const size_t& w = 1) {
+		graph[from].push_back(edge(to, w));
+		return graph;
+	}
+
+	template<typename T>
+	bool exists_edge(graph<T>& graph, const node<T>& from, const node<T>& to) {
+		auto res{ std::find_if(graph[from].begin(), graph[from].end(), [&to](const edge<T>& e) { return e.NEIGHBOUR == to;  }) };
+
+		return res != graph[from].end();
+	}
+
+	template<typename T>
+	graph<T>& remove_edge(graph<T>& graph, const node<T>& from, const node<T>& to) {
+		auto n = std::erase_if(graph[from], [&to](edge<T> e) { return e.NEIGHBOUR == to; });
+		return graph;
+	}
+
+	template<typename T>
+	std::vector<node<T>> find_sources(const graph<T>& graph) {
+		std::vector<node<T>> sources;
+
+		std::unordered_map<node<T>, bool> incoming_edge;
+	
+		for (const auto& [vertex, edges] : graph) {
+			if (incoming_edge.find(vertex) == incoming_edge.end()) {
+				incoming_edge[vertex] = false;
+			}
+			for (const edge<T>& n : edges) {
+				incoming_edge[n.NEIGHBOUR] = true;
+			}
+		}
+
+		for (const auto& [vertex, incoming] : incoming_edge) {
+			if (!incoming) {
+				sources.push_back(vertex);
+			}
+		}
+
+		return sources;
+	}
+	
+	template<typename T>
+	graph<T>& optimise(graph<T>& graph) {
+		auto is_bridge = [](const std::pair<node<T>, std::vector<edge<T>>>& v) -> bool {
+			return v.second.size() == 2;
+		};
+
+		auto res{ std::find_if(graph.begin(), graph.end(), is_bridge) };
+
+		while (res != graph.end()) {
+			std::cout << res->first << " IS BRIDGE for " << res->second[0] << " & " << res->second[1] << '\n';
+			node<T> a = res->second[0].NEIGHBOUR;
+			node<T> b = res->second[1].NEIGHBOUR;
+
+			size_t new_weight{ res->second[0].weight + res->second[1].weight };
+
+			std::cout << "New weight: " << new_weight << '\n';
+
+			if (exists_edge(graph, a, res->first)) {
+				add_edge(graph, a, b, new_weight);
+				remove_edge(graph, a, res->first);
+				std::cout << a;
+				print_edges(graph[a]);
+			}
+
+			if (exists_edge(graph, b, res->first)) {
+				add_edge(graph, b, a, new_weight);
+				remove_edge(graph, b, res->first);
+			}
+
+			graph.erase(res->first);
+
+			res = std::find_if(graph.begin(), graph.end(), is_bridge);
+		}
+
+		return graph;
+	}
+
+	template<typename T>
+	void print_edges(const std::vector<edge<T>>& edges) {
+		for (const edge<T>& e : edges) {
+			std::cout << ' ' << e;
+		}
+		std::cout << '\n';
+	}
+
+	template<typename T>
+	void print_graph(const graph<T>& g) {
+		for (const auto& [v, edges] : g) {
+			std::cout << v << ':';
+			for (const auto& [w, n] : edges) {
+				std::cout << ' ' << w << '(' << n << ')' << ' ';
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	template<typename T>
+	std::vector<node<T>> topolgical_sort(const graph<T>& graph) {
+
+
+		return {};
+	}
+}
+
+namespace std {
+	template<typename T>
+	struct hash<aoc::node<T>> {
+	public:
+		size_t operator()(const aoc::node<T>& g) const {
+			return g.ID;
+		}
+	};
+}

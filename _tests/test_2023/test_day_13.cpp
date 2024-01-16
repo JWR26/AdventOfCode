@@ -129,7 +129,7 @@ namespace test2023
 
 		TEST_METHOD(TestPart1)
 		{
-			const std::vector<std::vector<std::string>> INPUT{ file_parser::get_paragraphs(TEST_FILE) };
+			const std::vector<std::vector<std::string>> INPUT{ aoc::get_paragraphs(TEST_FILE) };
 
 			int actual{ day_13::summarise_notes(INPUT) };
 			int expected{ 405 };
@@ -207,7 +207,7 @@ namespace test2023
 
 		TEST_METHOD(TestPart2)
 		{
-			const std::vector<std::vector<std::string>> INPUT{ file_parser::get_paragraphs(TEST_FILE) };
+			const std::vector<std::vector<std::string>> INPUT{ aoc::get_paragraphs(TEST_FILE) };
 
 			int actual{ day_13::summarise_unsmudged_notes(INPUT) };
 			int expected{ 400 };

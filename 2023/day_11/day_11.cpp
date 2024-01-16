@@ -4,7 +4,7 @@ void day_11::print_answers() {
 	std::cout << DAY_NAME; 
 
 	// get grid
-	const grid INPUT{file_parser::file_to_grid(INPUT_FILE)};
+	const grid INPUT{aoc::file_to_grid(INPUT_FILE)};
 
 	// find galaxies
 	const std::vector<std::pair<int64_t, int64_t>> GALAXY_LIST{ find_galaxies(INPUT) };

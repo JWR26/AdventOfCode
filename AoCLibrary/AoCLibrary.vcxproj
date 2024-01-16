@@ -138,9 +138,12 @@
     <ClInclude Include="graph.h" />
     <ClInclude Include="file_parser.h" />
     <ClInclude Include="grid.h" />
+    <ClInclude Include="input_output.h" />
+    <ClInclude Include="output.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file_parser.cpp" />
+    <ClCompile Include="input_output.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

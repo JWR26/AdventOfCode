@@ -78,7 +78,7 @@ namespace test2023
 
 		TEST_METHOD(TestSumRecords)
 		{
-			const std::vector<std::string> INPUT{ file_parser::get_lines(TEST_FILE) };
+			const std::vector<std::string> INPUT{ aoc::get_lines(TEST_FILE) };
 
 			day_12::ConditionRecords records{ day_12::get_records(INPUT) };
 
@@ -91,7 +91,7 @@ namespace test2023
 
 		TEST_METHOD(TestSumRecordsPart1)
 		{
-			const std::vector<std::string> INPUT{ file_parser::get_lines(day_12::INPUT_FILE) };
+			const std::vector<std::string> INPUT{ aoc::get_lines(day_12::INPUT_FILE) };
 
 			day_12::ConditionRecords records{ day_12::get_records(INPUT) };
 
@@ -137,7 +137,7 @@ namespace test2023
 
 		TEST_METHOD(TestAllUnfolded)
 		{
-			const std::vector<std::string> INPUT{ file_parser::get_lines(TEST_FILE) };
+			const std::vector<std::string> INPUT{ aoc::get_lines(TEST_FILE) };
 
 			day_12::ConditionRecords records{ day_12::get_records(INPUT) };
 

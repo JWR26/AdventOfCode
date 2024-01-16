@@ -1,11 +1,7 @@
 #include "day_14.h"
 
 void day_14::print_answers() {
-	std::cout << DAY_NAME;
-
-	auto t1 = std::chrono::high_resolution_clock::now();
-
-	const std::vector<std::vector<char>> INPUT{ file_parser::file_to_grid(INPUT_FILE) };
+	const std::vector<std::vector<char>> INPUT{ aoc::file_to_grid(INPUT_FILE) };
 
 	aoc::grid<char> grid{ INPUT };
 
@@ -13,23 +9,14 @@ void day_14::print_answers() {
 
 	int part_1{ calculate_north_load(grid) };
 
-	auto t2 = std::chrono::high_resolution_clock::now();
-
-	std::cout << "Part 1: " << part_1 << '\n';
-
-	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1) << '\n';
-
 	aoc::grid<char> grid_2{ INPUT };
 
 	grid = spin_cycle(grid_2, 1000000000);
 
 	int part_2{ calculate_north_load(grid) };
 
-	t2 = std::chrono::high_resolution_clock::now();
+	aoc::print_answer(DAY_NAME, part_1, part_2);
 
-	std::cout << "Part 2: " << part_2 << '\n';
-
-	std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1) << '\n';
 }
 
 void day_14::tilt_north(aoc::grid<char>& g) {
