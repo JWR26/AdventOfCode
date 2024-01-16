@@ -1,7 +1,7 @@
 #include "day_22.h"
 
 void day_22::print_answers() {
-	const std::string FILE{ aoc::get_input_file(2023, 22) };
+	const std::string FILE{ aoc::get_test_file(2023, 22) };
 
 	const std::string INPUT{ aoc::read_to_string(FILE) };
 
@@ -11,15 +11,14 @@ void day_22::print_answers() {
 
 	fall(snapshot);
 
-	establish_supports(snapshot);
-
 	const std::vector<brick> CRITICAL_BRICKS{ disintegrate(snapshot) };
 
 	const size_t PART_1{ snapshot.size() - CRITICAL_BRICKS.size() };
 
-	aoc::print_answer("--- Day 22: Sand Slabs ---", PART_1, '?');
-}
+	const int PART_2{ sum_chain_reactions(snapshot, CRITICAL_BRICKS) };
 
+	aoc::print_answer("--- Day 22: Sand Slabs ---", PART_1, PART_2);
+}
 
 std::vector<day_22::brick> day_22::get_bricks(const std::string& str) {
 	std::vector<brick> bricks;
@@ -39,7 +38,7 @@ std::vector<day_22::brick> day_22::get_bricks(const std::string& str) {
 		int w{ std::stoi(sm[5].str()) - y + 1 };
 		int h{ std::stoi(sm[6].str()) - z + 1 };
 
-		bricks.emplace_back(x, y, z, l, w, h);
+		bricks.emplace_back(sm[0], x, y, z, l, w, h);
 
 		start = sm[0].second;
 	}
@@ -48,73 +47,60 @@ std::vector<day_22::brick> day_22::get_bricks(const std::string& str) {
 }
 
 bool day_22::compare_z(const brick& b1, const brick& b2) {
-	return b1.z < b2.z;
+	if (b1.z < b2.z) {
+		return true;
+	}
+	// ensures shorter of the vertical blocks comes
+	return b1.z == b2.z && b1.height < b2.height;
 }
 
 std::vector<day_22::brick>& day_22::fall(std::vector<brick>& snapshot) {
-	// hold the max z values in the x & y columns
-	std::unordered_map<int, int> max_z_x{}, max_z_y{};
-
-	auto max_z = [](int from, int to, std::unordered_map<int, int>& in) -> int {
-		int max{};
-		for (from; from < to; ++from) {
-			max = std::max(max, in[from]);
-		}
-		return max;
-		};
-
-	auto update_max_z = [](int from, int to, const int& z, std::unordered_map<int, int>& in) ->std::unordered_map<int, int>& {
-		for (from; from < to; ++from) {
-			in[from] = z;
-		}
-
-		return in;
-	};
+	// hold the max z value and corresponding brick for x,y (x : [y : (z, brick)])
+	std::unordered_map<int, std::unordered_map<int, std::pair<int, brick>>> max_z;
 
 	for (brick& b : snapshot) {
-		// find max z under block in x & y axis
-		int zx{ max_z(b.x, b.x + b.length, max_z_x) };
-		int zy{ max_z(b.y, b.y + b.width, max_z_y) };
+		// find the max z under the blocks x,y coordinates
+		int settle_z{};
 
-		// z is the row above the min settle point
-		b.z = std::min(zx, zy) + 1;
+		for (int x{ b.x }; x < b.x + b.length; ++x) {
+			for (int y{ b.y }; y < b.y + b.width; ++y) {
+				settle_z = std::max(settle_z, max_z[x][y].first);
+			}
+		}
 
-		// update the max_z for x & y axis
-		update_max_z(b.x, b.x + b.length, b.z, max_z_x);
-		update_max_z(b.y, b.y + b.width, b.z, max_z_y);
+		b.z = settle_z + 1;
+
+		// find bricks with contact
+		// store previous in case more than 1 cube overlap
+		brick prev;
+
+		for (int x{ b.x }; x < b.x + b.length; ++x) {
+			for (int y{ b.y }; y < b.y + b.width; ++y) {
+				if (max_z[x][y].first != b.z - 1) {
+					continue;
+				}
+				if (max_z[x][y].second == prev) {
+					continue;
+				}
+
+				b.supported_by.push_back(max_z[x][y].second);
+
+				auto res{ std::find(snapshot.begin(), snapshot.end(),max_z[x][y].second) };
+				res->supporting.push_back(b);
+				prev = max_z[x][y].second;
+			}
+		}
+
+		// update the max_z for x,y coordinates
+		for (int x{ b.x }; x < b.x + b.length; ++x) {
+			for (int y{ b.y }; y < b.y + b.width; ++y) {
+				max_z[x][y].first = b.z + b.height - 1;
+				max_z[x][y].second = b;
+			}
+		}
 	}
 
 	return snapshot;
-}
-
-std::vector<day_22::brick>& day_22::establish_supports(std::vector<brick>& stack) {
-	std::unordered_map<int, std::vector<brick>> brick_tops;
-	
-	auto overlap = [](int top_from, int top_to, int bottom_from, int bottom_to) -> bool {
-		if (top_from < bottom_from) {
-			return top_to > top_from;
-		}
-		return top_from < bottom_to;
-	};
-
-	for (auto top{ stack.begin() }; top != stack.end(); ++top) {
-		brick_tops[top->z + top->height].push_back(*top);
-
-		for (brick& b : brick_tops[top->z]) {
-			if (!overlap(top->x, top->x + top->length, b.x, b.x + b.length)) {
-				continue;
-			}
-
-			if (!overlap(top->y, top->y + top->width, b.y, b.y + b.width)) {
-				continue;
-			}
-
-			top->supported_by.push_back(b);
-			b.supporting.push_back(*top);
-		}
-	}
-
-	return stack;
 }
 
 std::vector<day_22::brick> day_22::disintegrate(const std::vector<brick>& stack) {
@@ -130,6 +116,40 @@ std::vector<day_22::brick> day_22::disintegrate(const std::vector<brick>& stack)
 		}
 	}
 
-
 	return critical;
+}
+
+int day_22::chain_reaction(const std::vector<brick>& stack, const brick& start) {
+	std::unordered_set<std::string> disintegrated{};
+	std::queue<brick> queue;
+	queue.push(start);
+
+	// hash table and lambda instead of tree with intersections to check that all neighbours are disintegrated
+	auto is_disintegrated = [&disintegrated](const brick b) -> bool {
+		return disintegrated.find(b.id) != disintegrated.end();
+		};
+
+	while (!queue.empty()) {
+		brick b{ queue.front() };
+		queue.pop();
+
+		disintegrated.insert(b.id);
+
+		for (const brick& s : b.supporting) {
+			if (std::all_of(s.supported_by.begin(), s.supported_by.end(), is_disintegrated)) {
+				queue.push(s);
+			}
+		}
+	}
+
+	// minus 1 as start brick is in disintegrated l
+	return static_cast<int>(disintegrated.size()) - 1;
+}
+
+int day_22::sum_chain_reactions(const std::vector<brick>& stack, const std::vector<brick>& brick_list) {
+	auto op = [&stack](int i, const brick b) -> int {
+		return i + chain_reaction(stack, b);
+		};
+
+	return std::accumulate(brick_list.begin(), brick_list.end(), 0, op);
 }
