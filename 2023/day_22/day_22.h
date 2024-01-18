@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <memory>
 #include <numeric>
 #include <queue>
 #include <regex>
@@ -23,7 +24,7 @@ namespace day_22 {
 		int x{}, y{}, z{};
 		int length{}, width{}, height{};
 
-		std::vector<brick> supported_by{}, supporting{};
+		std::vector<std::shared_ptr<brick>> supported_by{}, supporting{};
 
 		bool operator==(const brick& other) const {
 			return (id == other.id) && (x == other.x) && (y == other.y) && (z == other.z) && (length == other.length) && (width == other.width) && (height == other.height);
@@ -43,15 +44,17 @@ namespace day_22 {
 		}
 	};
 
-	std::vector<brick> get_bricks(const std::string& str);
+	using brick_ptr = std::shared_ptr<brick>;
 
-	bool compare_z(const brick& b1, const brick& b2);
+	std::vector<brick_ptr> get_bricks(const std::string& str);
 
-	std::vector<brick>& fall(std::vector<brick>& snapshot);
+	bool compare_z(const brick_ptr& b1, const brick_ptr& b2);
 
-	std::vector<brick> disintegrate(const std::vector<brick>& stack);
+	std::vector<brick_ptr>& fall(std::vector<brick_ptr>& snapshot);
 
-	int chain_reaction(const std::vector<brick>& stack, const brick& start);
+	std::vector<brick_ptr> disintegrate(const std::vector<brick_ptr>& stack);
 
-	int sum_chain_reactions(const std::vector<brick>& stack, const std::vector<brick>& brick_list);
+	int chain_reaction(const std::vector<brick_ptr>& stack, const brick_ptr& start);
+
+	int sum_chain_reactions(const std::vector<brick_ptr>& stack, const std::vector<brick_ptr>& brick_list);
 }
