@@ -140,10 +140,12 @@
     <ClInclude Include="grid.h" />
     <ClInclude Include="input_output.h" />
     <ClInclude Include="output.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file_parser.cpp" />
     <ClCompile Include="input_output.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -46,11 +46,11 @@ int main()
     day_15::print_answers();
     day_16::print_answers();
     day_17::print_answers();
-    day_18::print_answers();
+    day_18::print_answers();*/
     day_19::print_answers();
-    day_20::print_answers();
+    /*day_20::print_answers();
     day_21::print_answers();*/
-    day_22::print_answers();
+    //day_22::print_answers();
     /*day_23::print_answers();
     day_24::print_answers();
     day_25::print_answers();*/
