@@ -36,7 +36,11 @@ void day_19::print_answers() {
 	aoc::print_answer("--- Day 19: Aplenty ---", PART_1, PART_2);
 }
 
-
+/// <summary>
+/// Extracts parts with the format x=..,m=..,a=..,s=.. from a string using regular expressions.
+/// </summary>
+/// <param name="str">Text to be scanned</param>
+/// <returns>A vector of all the found parts</returns>
 std::vector<day_19::part> day_19::get_parts(const std::string& str) {
 	std::vector<part> parts;
 
