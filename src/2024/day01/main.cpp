@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <numeric>
+#include <string>
 #include <vector>
 
 // custom includes 
