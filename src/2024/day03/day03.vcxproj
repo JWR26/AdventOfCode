@@ -135,11 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="computer.cpp" />
     <ClCompile Include="day03.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="computer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
