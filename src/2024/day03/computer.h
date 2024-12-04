@@ -46,7 +46,7 @@ namespace computer {
         int left;
         int right;
 
-        explicit Binary(const std::function<int(int, int)>& _op, const int& _left, const int& _right, const Type& t, const std::string& l) : op(_op), left(_left), right(_right) , Instruction(t, l) {}
+        Binary(const std::function<int(int, int)>& _op, const int& _left, const int& _right, const Type& t, const std::string& l) : op(_op), left(_left), right(_right) , Instruction(t, l) {}
 
         void print() const override;
         void visit(std::shared_ptr<Computer>& computer) const override;
