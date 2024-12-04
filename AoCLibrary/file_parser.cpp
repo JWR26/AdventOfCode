@@ -7,7 +7,7 @@ std::vector<std::string> aoc::get_lines(const std::string& file_path) {
 	while (data) {
 		std::getline(data, line, '\n');
 		if (!line.empty()) {
-			all_lines.push_back(line);
+			all_lines.emplace_back(line);
 		}
 	}
 	return all_lines;
@@ -21,7 +21,7 @@ std::vector<std::string> aoc::split_file_by(const std::string& file_path, const 
 	while (data) {
 		std::getline(data, line, delimiter);
 		if (!line.empty()) {
-			strings.push_back(line);
+			strings.emplace_back(line);
 		}
 		line.clear();
 	}
@@ -40,10 +40,10 @@ std::vector<std::vector<char>> aoc::file_to_grid(const std::string& file_path) {
 		}
 		std::vector<char> row;
 		for (const char& c : line) {
-			row.push_back(c);
+			row.emplace_back(c);
 		}
 
-		grid.push_back(row);
+		grid.emplace_back(row);
 	}
 
 	return grid;
@@ -65,14 +65,14 @@ std::pair < std::vector<std::vector<char>>, std::vector < std::pair<int, int>>> 
 		std::vector<char> row;
 		j = 0;
 		for (const char& c : line) {
-			row.push_back(c);
+			row.emplace_back(c);
 			if (pred(c)) {
-				positions.push_back(std::make_pair(i, j));
+				positions.emplace_back(std::make_pair(i, j));
 			}
 			++j;
 		}
 		++i;
-		grid.push_back(row);
+		grid.emplace_back(row);
 	}
 
 	return std::make_pair(grid, positions);
@@ -93,10 +93,10 @@ std::vector<std::vector<std::string>> aoc::get_paragraphs(const std::string& fil
 	while (data) {
 		std::getline(data, line, '\n');
 		if (!line.empty()) {
-			lines.push_back(line);
+			lines.emplace_back(line);
 		}
 		else {
-			paragraphs.push_back(lines);
+			paragraphs.emplace_back(lines);
 			lines.clear();
 		}
 	}

@@ -74,7 +74,7 @@ aoc::grid<char> day_14::spin_cycle(const aoc::grid<char>& grid, const size_t& n)
 		cycle(spun_grid);
 		res = grid_set.insert(spun_grid).second;
 		if (res) {
-			grids.push_back(spun_grid);
+			grids.emplace_back(spun_grid);
 			++spins;
 		}
 	}

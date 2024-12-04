@@ -59,7 +59,7 @@ namespace day_02 {
 		std::vector<Game> game_list;
 
 		for (const std::string& s : list) {
-			game_list.push_back(to_game(s));
+			game_list.emplace_back(to_game(s));
 		}
 
 		return game_list;

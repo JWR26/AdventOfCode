@@ -39,16 +39,16 @@ namespace aoc {
 					}
 					else {
 						n = negative ? -n : n;
-						ints.push_back(n);
+						ints.emplace_back(n);
 						n = 0;
 						negative = false;
 					}
 				}
 				if (n != 0) {
 					n = negative ? -n : n;
-					ints.push_back(n);
+					ints.emplace_back(n);
 				}
-				int_lists.push_back(ints);
+				int_lists.emplace_back(ints);
 			}
 		}
 		return int_lists;

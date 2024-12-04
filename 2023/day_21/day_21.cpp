@@ -34,14 +34,14 @@ std::pair<day_21::graph, int> day_21::grid_to_graph(const std::vector<std::vecto
 
 			if (i > 0) {
 				if (grid[i - 1][j] != ROCK) {
-					g[i * C + j].push_back((i - 1) * C + j);
-					g[(i - 1) * C + j].push_back(i * C + j);
+					g[i * C + j].emplace_back((i - 1) * C + j);
+					g[(i - 1) * C + j].emplace_back(i * C + j);
 				}
 			}
 			if (j > 0) {
 				if (grid[i][j - 1] != ROCK) {
-					g[i * C + j].push_back(i * C + j - 1);
-					g[i * C + j - 1].push_back(i * C + j);
+					g[i * C + j].emplace_back(i * C + j - 1);
+					g[i * C + j - 1].emplace_back(i * C + j);
 				}
 			}
 		}
@@ -70,7 +70,7 @@ std::vector<int> day_21::reach_in_steps(const graph& g, const int& start, const 
 		}
 
 		if (STEPS % 2 == POR) {
-			reached.push_back(CURRENT);
+			reached.emplace_back(CURRENT);
 		}
 
 		for (const int& NEIGHBOUR : g.at(CURRENT)) {

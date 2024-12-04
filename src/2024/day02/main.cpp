@@ -13,6 +13,7 @@ const std::string INPUT_FILE{ "input.txt" };
 const std::string TEST_FILE{ "test.txt" };
 
 // forward declarations
+
 std::vector<std::vector<int>> parse_reports(std::ifstream& file);
 std::vector<int>::const_iterator find_error_level(std::vector<int>::const_iterator first, std::vector<int>::const_iterator last);
 bool is_safe(const std::vector<int>& report);
@@ -48,15 +49,15 @@ std::vector<std::vector<int>> parse_reports(std::ifstream& file) {
 
     while (file >> c) {
         if (c == ' ') {
-            report.push_back(level);
+            report.emplace_back(level);
             level = 0;
             continue;
         }
 
         if (c == '\n') {
-            report.push_back(level);
+            report.emplace_back(level);
             level = 0;
-            reports.push_back(report);
+            reports.emplace_back(report);
             report.clear();
             continue;
         }

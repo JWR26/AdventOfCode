@@ -145,7 +145,7 @@ namespace graph {
 			_cont vertices;
 			for (const auto& [v, e] : graph) {
 				if (func(v)) {
-					vertices.push_back(v);
+					vertices.emplace_back(v);
 				}
 			}
 			return vertices;
@@ -156,7 +156,7 @@ namespace graph {
 			_cont vertices;
 			for (const auto& [v, e] : graph) {
 				if (func(e)) {
-					vertices.push_back(v);
+					vertices.emplace_back(v);
 				}
 			}
 			return vertices;
@@ -312,7 +312,7 @@ namespace graph {
 			_cont vertices;
 			for (const auto& [v, e] : graph) {
 				if (func(v)) {
-					vertices.push_back(v);
+					vertices.emplace_back(v);
 				}
 			}
 			return vertices;
@@ -323,7 +323,7 @@ namespace graph {
 			_cont vertices;
 			for (const auto& [v, e] : graph) {
 				if (func(e)) {
-					vertices.push_back(v);
+					vertices.emplace_back(v);
 				}
 			}
 			return vertices;
@@ -337,7 +337,7 @@ namespace graph {
 		_cont  get_vertices() const {
 			_cont vertices;
 			for (const auto& [v, e] : graph) {
-				vertices.push_back(v);
+				vertices.emplace_back(v);
 			}
 			return vertices;
 		}
@@ -428,7 +428,7 @@ namespace aoc {
 
 	template<typename T>
 	graph<T>& add_edge(graph<T>& graph, const node<T>& from, const node<T>& to, const size_t& w = 1) {
-		graph[from].push_back(edge(to, w));
+		graph[from].emplace_back(edge(to, w));
 		return graph;
 	}
 
@@ -462,7 +462,7 @@ namespace aoc {
 
 		for (const auto& [vertex, incoming] : incoming_edge) {
 			if (!incoming) {
-				sources.push_back(vertex);
+				sources.emplace_back(vertex);
 			}
 		}
 

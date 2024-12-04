@@ -108,7 +108,7 @@ private:
 		}
 
 		for (int i = 0; i < num; i++) {
-			modes.push_back(static_cast<Intcode::MODE>((T)((instruction % (T)pow(10, i + 3)) / pow(10, i + 2))));
+			modes.emplace_back(static_cast<Intcode::MODE>((T)((instruction % (T)pow(10, i + 3)) / pow(10, i + 2))));
 		}
 
 		return modes;
@@ -192,7 +192,7 @@ public:
 				break;
 			case OUTPUT:
 				//std::cout << "Output...\n";
-				programme_output.push_back(current_programme[get_index(current_programme, tick, 1, modes[0])]);
+				programme_output.emplace_back(current_programme[get_index(current_programme, tick, 1, modes[0])]);
 				break;
 			case JUMP_IF_FALSE:
 				//std::cout << "Jump - False...\n";
@@ -218,7 +218,7 @@ public:
 			case EXIT:
 				//std::cout << "Exiting programme...\n";
 				if (programme_output.empty()) {
-					programme_output.push_back(current_programme[0]);
+					programme_output.emplace_back(current_programme[0]);
 				}
 				return programme_output;
 			default:
@@ -255,7 +255,7 @@ public:
 	}
 
 	void add_input_instruction(const T i) {
-		input_list.push_back(i);
+		input_list.emplace_back(i);
 	}
 
 	void reset_programme() {

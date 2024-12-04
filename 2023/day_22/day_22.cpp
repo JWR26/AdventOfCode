@@ -40,7 +40,7 @@ std::vector<day_22::brick_ptr> day_22::get_bricks(const std::string& str) {
 
 		brick_ptr b{ std::make_shared<brick>(brick(sm[0], x, y, z, l, w, h, {}, {})) };
 
-		bricks.push_back(b);
+		bricks.emplace_back(b);
 
 		start = sm[0].second;
 	}
@@ -85,8 +85,8 @@ std::vector<day_22::brick_ptr>& day_22::fall(std::vector<brick_ptr>& snapshot) {
 					continue;
 				}
 
-				b->supported_by.push_back(max_z[x][y].second);
-				max_z[x][y].second->supporting.push_back(b);
+				b->supported_by.emplace_back(max_z[x][y].second);
+				max_z[x][y].second->supporting.emplace_back(b);
 				prev = max_z[x][y].second;
 			}
 		}
@@ -113,7 +113,7 @@ std::vector<day_22::brick_ptr> day_22::disintegrate(const std::vector<brick_ptr>
 
 		// no need for set as vectors should be small and will be easier for later
 		if (std::find(critical.begin(), critical.end(), b->supported_by.front()) == critical.end()) {
-			critical.push_back(b->supported_by.front());
+			critical.emplace_back(b->supported_by.front());
 		}
 	}
 

@@ -114,16 +114,16 @@ int day_16::largest_energisation(const grid& g) {
 
 	for (int i{}; i < g.COLUMNS; ++i) {
 		beam start(-1, i, DIRECTION::DOWN);
-		energisation_numbers.push_back(tiles_energised(g, start));
+		energisation_numbers.emplace_back(tiles_energised(g, start));
 		start = beam(g.ROWS, i, DIRECTION::UP);
-		energisation_numbers.push_back(tiles_energised(g, start));
+		energisation_numbers.emplace_back(tiles_energised(g, start));
 	}
 
 	for (int i{}; i < g.ROWS; ++i) {
 		beam start(i, -1, DIRECTION::RIGHT);
-		energisation_numbers.push_back(tiles_energised(g, start));
+		energisation_numbers.emplace_back(tiles_energised(g, start));
 		start = beam(i, g.COLUMNS, DIRECTION::LEFT);
-		energisation_numbers.push_back(tiles_energised(g, start));
+		energisation_numbers.emplace_back(tiles_energised(g, start));
 	}
 
 	int max = *std::max_element(energisation_numbers.begin(), energisation_numbers.end());

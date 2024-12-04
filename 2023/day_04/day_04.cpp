@@ -37,7 +37,7 @@ std::vector<std::pair<std::set<int>, std::set<int>>> day_04::parse_cards(const s
 				card_numbers.insert(n);
 				n = 0;
 			}
-			scratchcards.push_back(std::make_pair(winning_numbers, card_numbers));
+			scratchcards.emplace_back(std::make_pair(winning_numbers, card_numbers));
 			n = 0;
 		}
 	}
@@ -131,7 +131,7 @@ long long second_optimise(const std::string& file_path) {
 					n = n * 10 + (c - '0');
 				}
 				else if (n > 0) {
-					container.push_back(n);
+					container.emplace_back(n);
 					n = 0;
 				}
 				++it;
@@ -147,7 +147,7 @@ long long second_optimise(const std::string& file_path) {
 				evaluate_char(card_numbers, *it);
 			}
 			if (n > 0) {
-				card_numbers.push_back(n);
+				card_numbers.emplace_back(n);
 			}
 
 			std::sort(winning_numbers.begin(), winning_numbers.end());

@@ -31,13 +31,13 @@ void day_05::print_answers() {
 				n = n * 10 + (*it - '0');
 			}
 			else if (n > -1) {
-				ints.push_back(n);
+				ints.emplace_back(n);
 				n = -1;
 			}
 			++it;
 		}
 		if (n > -1) {
-			ints.push_back(n);
+			ints.emplace_back(n);
 		}
 
 		return ints;
@@ -55,7 +55,7 @@ void day_05::print_answers() {
 			if (numbers.size() > 3) {
 				seeds = numbers;
 				for (int i{ 0 }; i < numbers.size(); i += 2) {
-					seed_ranges.push_back(std::make_pair(numbers[i], numbers[i] + numbers[i + 1] - 1));
+					seed_ranges.emplace_back(std::make_pair(numbers[i], numbers[i] + numbers[i + 1] - 1));
 				}
 				continue;
 			}
@@ -63,17 +63,17 @@ void day_05::print_answers() {
 			long long destination{ numbers[0] }, source{ numbers[1] }, length{ numbers[2] };
 			long long offset{ destination - source };
 			std::pair<long long, long long> sub_range{ std::make_pair(source, source + length - 1) };
-			map_ranges.push_back(std::make_pair(sub_range, offset));
+			map_ranges.emplace_back(std::make_pair(sub_range, offset));
 
 			std::pair<long long, long long> rev_sub_range{ std::make_pair(destination, destination + length - 1) };
-			reverse_map_ranges.push_back(std::make_pair(rev_sub_range, -offset));
+			reverse_map_ranges.emplace_back(std::make_pair(rev_sub_range, -offset));
 		}
 		else {
 			std::sort(map_ranges.begin(), map_ranges.end());
-			range_offsets.push_back(map_ranges);
+			range_offsets.emplace_back(map_ranges);
 			map_ranges.clear();
 			std::sort(reverse_map_ranges.begin(), reverse_map_ranges.end());
-			reverse_range_offsets.push_back(reverse_map_ranges);
+			reverse_range_offsets.emplace_back(reverse_map_ranges);
 			reverse_map_ranges.clear();
 		}
 	}

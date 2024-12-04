@@ -66,12 +66,12 @@ std::pair<std::vector<int>, std::vector<int>> parse_lists(std::ifstream& file) {
             if (number == 0) {
                 continue;
             }
-            lists.first.push_back(number);
+            lists.first.emplace_back(number);
             number = 0;
             continue;
         }
         if (c == '\n') {
-            lists.second.push_back(number);
+            lists.second.emplace_back(number);
             number = 0;
             continue;
         }

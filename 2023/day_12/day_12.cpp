@@ -134,13 +134,13 @@ day_12::Record day_12::split_record(const std::string& record) {
 			n = n * 10 + (*it - '0');
 		}
 		else if (n > 0) {
-			pattern.push_back(n);
+			pattern.emplace_back(n);
 			n = 0;
 		}
 		++it;
 	}
 	if (n > 0) {
-		pattern.push_back(n);
+		pattern.emplace_back(n);
 	}
 
 	return std::make_pair(springs, pattern);
@@ -150,7 +150,7 @@ day_12::ConditionRecords day_12::get_records(const std::vector<std::string> reco
 	ConditionRecords records;
 
 	for (const std::string& str : record_list) {
-		records.push_back(split_record(str));
+		records.emplace_back(split_record(str));
 	}
 
 	return records;

@@ -39,7 +39,7 @@ std::vector<day_18::vertex> day_18::get_trench(const std::vector<std::string>& d
 		current.first += dir.first * meters;
 		current.second += dir.second * meters;
 
-		trench.push_back(current);
+		trench.emplace_back(current);
 	}
 
 	return trench;
@@ -67,7 +67,7 @@ std::vector<day_18::vertex> day_18::get_hex_trench(const std::vector<std::string
 		current.first += dir.first * meters;
 		current.second += dir.second * meters;
 
-		trench.push_back(current);
+		trench.emplace_back(current);
 	}
 
 	return trench;

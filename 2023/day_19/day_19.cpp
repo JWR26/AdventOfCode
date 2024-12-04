@@ -80,7 +80,7 @@ day_19::system day_19::get_workflows(const std::string& str) {
 
 		for (const std::string& i : INSTRUCTIONS) {
 			if (i == "A" || i == "R" || i.find(':') == std::string::npos) {
-				workflows[WF].push_back(rule('x', std::greater<int>(), 0, i));
+				workflows[WF].emplace_back(rule('x', std::greater<int>(), 0, i));
 				continue;
 			}
 			rule r;
@@ -104,7 +104,7 @@ day_19::system day_19::get_workflows(const std::string& str) {
 
 			r.destination = std::string(it, i.end());
 
-			workflows[WF].push_back(r);
+			workflows[WF].emplace_back(r);
 		}
 
 		start = sm[0].second;
@@ -125,7 +125,7 @@ std::vector<day_19::part> day_19::evaluate_parts(const std::vector<part>& parts,
 		}
 
 		if (res == "A") {
-			accepted.push_back(p);
+			accepted.emplace_back(p);
 		}
 	}
 
@@ -157,7 +157,7 @@ std::vector<day_19::range> day_19::evaluate_range(const system& workflows, const
 		queue.pop();
 
 		if (destination == "A") {
-			accepted.push_back(next);
+			accepted.emplace_back(next);
 			continue;
 		}
 

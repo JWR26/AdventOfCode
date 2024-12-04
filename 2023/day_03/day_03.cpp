@@ -25,7 +25,7 @@ void day_03::print_answers() {
 			for (int j{ left }; j < right; ++j) {
 				n = schema_numbers[i][j];
 				if (n != prev && n > 0) {
-					numbers.push_back(n);
+					numbers.emplace_back(n);
 				}
 				prev = n;
 			}
