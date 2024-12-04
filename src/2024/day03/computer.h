@@ -29,27 +29,27 @@ namespace computer {
 
         virtual void print() const = 0;
 
-        virtual void visit(std::shared_ptr<Computer>& computer) const = 0;
+        virtual void visit(std::shared_ptr<Computer>& computer) = 0;
     };
 
-    struct Conditional : Instruction {
+    struct Conditional : Instruction, std::enable_shared_from_this<Conditional> {
         bool value;
 
-        Conditional(const bool& b, const Type& t, const std::string& l) : value(b), Instruction(t, l) {}
+        Conditional(const Type& t, const std::string& l, const bool& b) : Instruction{ t, l }, value(b) {}
 
         void print() const override;
-        void visit(std::shared_ptr<Computer>& computer) const override;
+        void visit(std::shared_ptr<Computer>& computer) override;
     };
 
-    struct Binary : Instruction {
+    struct Binary : Instruction, std::enable_shared_from_this<Binary> {
         std::function<int(int, int)> op;
         int left;
         int right;
 
-        Binary(const std::function<int(int, int)>& _op, const int& _left, const int& _right, const Type& t, const std::string& l) : op(_op), left(_left), right(_right) , Instruction(t, l) {}
+        Binary(const Type& t, const std::string& l, const std::function<int(int, int)>& _op, const int& _left, const int& _right) : Instruction{ t, l }, op(_op), left(_left), right(_right) {}
 
         void print() const override;
-        void visit(std::shared_ptr<Computer>& computer) const override;
+        void visit(std::shared_ptr<Computer>& computer) override;
     };
 
     struct Computer {

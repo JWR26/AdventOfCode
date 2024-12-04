@@ -18,9 +18,17 @@
     <ClCompile Include="day03.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="computer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
     <Text Include="test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="computer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,21 +6,21 @@ namespace computer {
         std::cout << lexeme << '\n';
     }
 
-    void Conditional::visit(std::shared_ptr<Computer>& computer) const {
-        computer->visit_conditional(std::make_shared<Conditional>(this));
+    void Conditional::visit(std::shared_ptr<Computer>& computer) {
+        computer->visit_conditional(shared_from_this());
     }
 
     void Binary::print() const {
         std::cout << lexeme << '\n';
     }
-    
-    void Binary::visit(std::shared_ptr<Computer>& computer) const {
-        computer->visit_binary(std::make_shared<Binary>(this));
+
+    void Binary::visit(std::shared_ptr<Computer>& computer) {
+        computer->visit_binary(shared_from_this());
     }
 
     void Computer::visit_binary(const std::shared_ptr<Binary>& binary) {
         if (enabled) {
-            binary->op(binary->left, binary->right);
+            sum += binary->op(binary->left, binary->right);
         }
     }
 
@@ -51,19 +51,19 @@ namespace computer {
 
             switch (instruction_type)
             {
-            case Type::DO: 
+            case Type::DO:
             {
-                instructions.emplace_back(std::make_shared<Conditional>(true, instruction_type, lexeme));
+                instructions.emplace_back(std::make_shared<Conditional>(instruction_type, lexeme, true));
                 break;
             }
             case Type::DONT:
             {
-                instructions.emplace_back(std::make_shared<Conditional>(false, instruction_type, lexeme));
+                instructions.emplace_back(std::make_shared<Conditional>(instruction_type, lexeme, false));
                 break;
             }
             case Type::MULTIPLY:
             {
-                instructions.emplace_back(std::make_shared<Binary>(std::multiplies<int>(), std::stoi(sm[1].str()), std::stoi(sm[2].str()), instruction_type, lexeme));
+                instructions.emplace_back(std::make_shared<Binary>(instruction_type, lexeme, std::multiplies<int>(), std::stoi(sm[1].str()), std::stoi(sm[2].str())));
                 break;
             }
             default:
